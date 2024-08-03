@@ -1,6 +1,12 @@
 package emulator.architecture
 
-class CPU {
+data class CPU(
+    val registers: ByteArray = ByteArray(8),
+    var programCounter: Int = 0,
+    var time: Byte = 0,
+    var address: Int = 0,
+    var memoryFlag: Boolean = false
+) {
 }
 
 /*
