@@ -1,6 +1,6 @@
 package emulator.architecture.memory
 
 abstract class Memory {
-    fun read(address: Int): Byte
-    fun write(address: Int, value: Byte)
+    open fun read(address: Int): Byte? {return null }
+    open fun write(address: Int, value: Byte) {}
 }

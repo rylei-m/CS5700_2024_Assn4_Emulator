@@ -1,12 +1,18 @@
 package emulator.architecture
 
-data class CPU(
-    val registers: ByteArray = ByteArray(8),
-    var programCounter: Int = 0,
-    var time: Byte = 0,
-    var address: Int = 0,
-    var memoryFlag: Boolean = false
-) {
+import emulator.Timer
+import emulator.architecture.memory.Memory
+import emulator.architecture.memory.RamOrRom.Ram
+import emulator.architecture.memory.RamOrRom.Rom
+import sun.jvm.hotspot.debugger.Address
+
+class CPU {
+    val registers: Array<Byte> = ByteArray(8) {0.toByte() }
+    val programCounter = ProgramCounter()
+    val timer = Timer()
+    val address = Address()
+    val memoryFlag = MemoryFlag()
+
     private val ram = Ram()
     private val rom = Rom()
 
@@ -17,11 +23,14 @@ data class CPU(
 
     fun executeInstructions() {
         val instruction = readInstructions()
-        val opcode = (instruction[0].toInt() and 0xF0) >> 4
+        val opcode = (instruction[0].toInt() and 0xF0) > > 4
         val operand = instruction[1]
 
         when (opcode) {
             // TODO: instructions
+            else -> {
+                throw IllegalArgumentException("Unsupported opcode: $opcode")
+            }
         }
         programCounter.value = (programCounter.value + 2) % 0x10000
     }
