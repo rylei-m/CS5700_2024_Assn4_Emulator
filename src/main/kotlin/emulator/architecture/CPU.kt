@@ -1,10 +1,7 @@
 package emulator.architecture
 
-import emulator.Timer
-import emulator.architecture.memory.RamNRom.Ram
 import emulator.architecture.memory.RamNRom.Rom
-import sun.jvm.hotspot.debugger.Address
-import java.util.concurrent.TimeUnit
+
 
 class CPU(
     val timerSpeed: Long = 500L,     //500 times p/sec
@@ -12,18 +9,28 @@ class CPU(
 ) {
     private var rom: Rom? = null
 
-    private fun readNextInstructionBytes(): ByteArray {
-
     val CPURunnable = Runnable {
-    try {
-        val bytes = readNextInstructionBytes()
-        //TODO: Byte Logic
-    } catch (e: Exception) {
-        executor.shutdown()
-        return@Runnable
-    }
-}
+        try {
+            val bytes = readNextInstructionBytes()
+            //TODO: Byte Logic
 
+            return@Runnable
+        } catch (e: Exception) {
+            executor.shutdown()
+            return@Runnable
+        }
+    }
+
+    private fun readNextInstructionBytes(): ByteArray {
+        return try {
+            val byte1 = 1
+            val byte2 = 1
+            byteArrayOf(byte1, byt2)
+        } catch (e: Exception) {
+            byteArrayOf(0,0)
+        }
+
+    }
 }
 
 
