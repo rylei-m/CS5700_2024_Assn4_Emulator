@@ -4,41 +4,28 @@ import emulator.Timer
 import emulator.architecture.memory.RamNRom.Ram
 import emulator.architecture.memory.RamNRom.Rom
 import sun.jvm.hotspot.debugger.Address
+import java.util.concurrent.TimeUnit
 
-class CPU {
-    val registers: Array<Byte> = ByteArray(8) {0.toByte() }
-    val programCounter = ProgramCounter()
-    val timer = Timer()
-    val address = Address()
-    val memoryFlag = MemoryFlag()
+class CPU(
+    val timerSpeed: Long = 500L,     //500 times p/sec
+    val executeInstructions: Long = 500L
+) {
+    private var rom: Rom? = null
 
-    private val ram = Ram()
-    private val rom = Rom()
+    private fun readNextInstructionBytes(): ByteArray {
 
-    fun load(program: ByteArray) {
-        rom.load(program)
-        programCounter.value = 0
-    }
-
-    fun executeInstructions() {
-        val instruction = readInstructions()
-        val opcode = (instruction[0].toInt() and 0xF0) > > 4
-        val operand = instruction[1]
-
-        when (opcode) {
-            // TODO: instructions
-            else -> {
-                throw IllegalArgumentException("Unsupported opcode: $opcode")
-            }
-        }
-        programCounter.value = (programCounter.value + 2) % 0x10000
-    }
-
-    private fun readInstructions(): ByteArray {
-        val address = programCounter.value
-        return byteArrayOf(rom.read(address.toInt()), rom.read((address + 1).toInt()))
+    val CPURunnable = Runnable {
+    try {
+        val bytes = readNextInstructionBytes()
+        //TODO: Byte Logic
+    } catch (e: Exception) {
+        executor.shutdown()
+        return@Runnable
     }
 }
+
+}
+
 
 /*
 The computer executes instructions at 500hz (500 times per second)
