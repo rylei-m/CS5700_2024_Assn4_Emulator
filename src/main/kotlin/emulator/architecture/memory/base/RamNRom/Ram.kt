@@ -1,8 +1,13 @@
-package emulator.architecture.memory.RamNRom
+package emulator.architecture.memory.base.RamNRom
 
 import emulator.architecture.memory.Memory
+import emulator.architecture.memory.base.BasicMemory
 
-class Ram: Memory() {
+object ManageRam {
+    val ram = Ram()
+}
+
+class Ram: BasicMemory() {
     private val memory = ByteArray(4096)  // 4KB RAM
 
     override fun read(address: Int): Byte = memory[address]

@@ -1,6 +1,6 @@
 package emulator.architecture
 
-import emulator.architecture.memory.RamNRom.Rom
+import emulator.architecture.memory.base.RamNRom.Rom
 
 
 class CPU(

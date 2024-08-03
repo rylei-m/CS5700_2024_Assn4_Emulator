@@ -1,5 +1,13 @@
 package emulator.architecture.registers
 
-class P {
-    var value: Int = 0
+object ManagerP {
+    val P = P()
+}
+
+class P : Register(
+    ByteArray()
+) {
+    override fun write(bytes: ByteArray) {
+
+    }
 }

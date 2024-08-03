@@ -1,5 +1,13 @@
 package emulator.architecture.registers
 
-class M {
-    var isRom: Boolean = false
+object ManagerA {
+    val a = A()
+}
+
+class M : Register(
+    ByteArray()
+) {
+    override fun write(bytes: ByteArray) {
+
+    }
 }
