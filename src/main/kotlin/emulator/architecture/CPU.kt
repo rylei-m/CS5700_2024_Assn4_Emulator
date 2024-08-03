@@ -1,9 +1,8 @@
 package emulator.architecture
 
 import emulator.Timer
-import emulator.architecture.memory.Memory
-import emulator.architecture.memory.RamOrRom.Ram
-import emulator.architecture.memory.RamOrRom.Rom
+import emulator.architecture.memory.RamNRom.Ram
+import emulator.architecture.memory.RamNRom.Rom
 import sun.jvm.hotspot.debugger.Address
 
 class CPU {

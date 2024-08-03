@@ -1,4 +1,4 @@
-package emulator.architecture.memory.RamOrRom
+package emulator.architecture.memory.RamNRom
 
 import emulator.architecture.memory.Memory
 
