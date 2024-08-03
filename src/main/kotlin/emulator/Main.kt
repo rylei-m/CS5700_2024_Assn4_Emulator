@@ -1,16 +1,41 @@
 package org.example
 
+import emulator.architecture.Screen
+import java.util.concurrent.Executors
+import java.util.concurrent.TimeUnit
+
 //TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
 // click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
 fun main() {
-    val name = "Kotlin"
-    //TIP Press <shortcut actionId="ShowIntentionActions"/> with your caret at the highlighted text
-    // to see how IntelliJ IDEA suggests fixing it.
-    println("Hello, " + name + "!")
+    val cpu = CPU()
+    val screen = Screen()
 
-    for (i in 1..5) {
-        //TIP Press <shortcut actionId="Debug"/> to start debugging your code. We have set one <icon src="AllIcons.Debugger.Db_set_breakpoint"/> breakpoint
-        // for you, but you can always add more by pressing <shortcut actionId="ToggleLineBreakpoint"/>.
-        println("i = $i")
+    val programData = loadProgram()
+    cpu.loadProgram(programData)
+
+    val executor = Executors.newSingleThreadScheduledExecutor()
+    val cpuRunnable = Runnable {
+        cpu.executeInstruction()
+        cpu.timer.value = (cpu.timer.value -1).toByte()
+        screen.updateScreen()
     }
+
+    val cpuFuture = executor.scheduleAtFixedRate(
+        cpuRunnable,
+        0,
+        1000L / 500L,
+        TimeUnit.MILLISECONDS
+    )
+
+    Runtime.getRuntime().addShutdownHook(Thread {
+        cpuFuture.cancel(true)
+        executor.shutdown()
+    })
+
+}
+
+fun loadProgram(): ByteArray {
+    print("enter the path to the program file: ")
+    val path = readLine() ?: throw IllegalArgumentException("Path cannot be null")
+    return File(path).readBytes()
 }

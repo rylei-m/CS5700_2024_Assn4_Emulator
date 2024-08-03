@@ -7,6 +7,29 @@ data class CPU(
     var address: Int = 0,
     var memoryFlag: Boolean = false
 ) {
+    private val ram = Ram()
+    private val rom = Rom()
+
+    fun load(program: ByteArray) {
+        rom.load(program)
+        programCounter.value = 0
+    }
+
+    fun executeInstructions() {
+        val instruction = readInstructions()
+        val opcode = (instruction[0].toInt() and 0xF0) >> 4
+        val operand = instruction[1]
+
+        when (opcode) {
+            // TODO: instructions
+        }
+        programCounter.value = (programCounter.value + 2) % 0x10000
+    }
+
+    private fun readInstructions(): ByteArray {
+        val address = programCounter.value
+        return byteArrayOf(rom.read(address.toInt()), rom.read((address + 1).toInt()))
+    }
 }
 
 /*
