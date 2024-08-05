@@ -14,7 +14,7 @@ class Ram: BasicMemory(
 
     override fun read(address: Int): Byte = memory[address]
 
-    override fun write(address: Int, value: Byte) {
-        memory[address] = value
+    override fun write(address: Int, byte: Byte) {
+        bytes[address] = byte
     }
 }

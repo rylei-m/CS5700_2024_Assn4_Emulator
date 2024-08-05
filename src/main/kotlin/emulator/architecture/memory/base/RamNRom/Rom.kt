@@ -16,18 +16,18 @@ object ManageRom {
 }
 
 
-class Rom: BasicMemory(
-    ByteArray(4096)
-) {
+class Rom(
+    bytes: ByteArray): BasicMemory(
+    bytes) {
+
     private val memory = ByteArray(4096)  // 4KB ROM
 
-    override fun read(address: Int): Byte = memory[address]
-
-    override fun write(address: Int, value: Byte) {
-        throw UnsupportedOperationException("ROM is read-only")
+    override fun read(address: Int): Byte {
+        val byte = bytes[address]
+        return byte
     }
 
-    fun load(data: ByteArray) {
-        data.copyInto(memory)
+    override fun write(address: Int, byte: Byte) {
+        throw UnsupportedOperationException("ROM is read-only")
     }
 }
