@@ -3,6 +3,7 @@ package emulator
 import emulator.architecture.memory.base.RamNRom.ManageRom
 import emulator.architecture.memory.base.RamNRom.ManageRom.rom
 import emulator.architecture.memory.base.RamNRom.Rom
+import emulator.architecture.registers.ManageP.P
 import java.io.File
 import java.io.IOException
 
@@ -19,15 +20,15 @@ class Utili {
         }
         return file
     }
-    fun byteArrayToInt(byteArray: ByteArray) : Int {
-        require(ByteArray.size == 2)
+    fun byteArrayToInt(byteArray: ByteArray): Int {
+        require(byteArray.size == 2) { "Byte array must be of size 2" }
         val result = (byteArray[1].toInt() and 0xFF) or ((byteArray[0].toInt() and 0xFF) shl 8)
         return result
     }
 
     fun readNextInstructionBytes(): ByteArray {
         return try {
-            val bi = byteArrayToInt(p.read())
+            val bi = byteArrayToInt(P.read())
             val byte1 = rom?.read(bi) ?: 0
             val byte2 = rom?.read(bi + 1) ?: 0
             byteArrayOf(byte1, byte2)
@@ -52,16 +53,22 @@ class Utili {
         }
     }
 
-    private fun romFromBinaryProgram(binaryProgram: ByteArray): Rom {
+    fun romFromBinaryProgram(binaryProgram: ByteArray): Rom {
         val memory = ByteArray(4096)
         for (i in binaryProgram.indices) {
-            memory[1] = binaryProgram[i]
+            memory[i] = binaryProgram[i]
         }
         ManageRom.initializeRom(memory)
         val rom = ManageRom.getRom()
-        if (rom ==null) {
+        if (rom == null) {
             throw IOException()
         }
         return rom
+    }
+    fun breakByteIntoNibbles(byte: Byte): Pair<Byte, Byte> {
+        val unsignedByte = byte.toUByte().toInt()
+        val highNibble = (unsignedByte shr 4) and 0x0F
+        val lowNibble = unsignedByte and 0x0F
+        return Pair(highNibble.toByte(), lowNibble.toByte())
     }
 }
