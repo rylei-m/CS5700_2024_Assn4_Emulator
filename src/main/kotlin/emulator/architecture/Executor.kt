@@ -14,7 +14,7 @@ class Executor {
         //val executor = Executors.newSingleThreadScheduledExecutor()
 
         val CPUFuture = executor.scheduleAtFixedRate(
-            CPU().CPURunnable,
+            CPU().cpuRunnable,
             0,
             Utili().executeInstructions,
             TimeUnit.MILLISECONDS

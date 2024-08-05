@@ -10,7 +10,7 @@ class CPU(
 ) {
     var rom: Rom? = null
 
-    val CPURunnable = Runnable {
+    val cpuRunnable = Runnable {
         try {
             val bytes = Utili().readNextInstructionBytes()
             require(bytes.size == 2)
@@ -26,7 +26,7 @@ class CPU(
             val nibble3 = nibbles23.second
 
         val instruction = instructionFactory.createInstruction(nibble0,nibble1,nibble2,nibble3,nibble3)
-        instruction.Executor().execute()
+        instruction.execute()
         } catch (e: Exception) {
             Executor().executor.shutdown()
             return@Runnable
