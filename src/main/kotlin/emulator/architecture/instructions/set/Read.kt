@@ -18,7 +18,7 @@ class Read(
         val xValue = nibbles[0].toInt()
         x = r[xValue]    }
 
-    override fun preformOperation() {
+    override fun performOperation() {
         val mByteArray = m.read()
         val isUsingROM = mByteArray[0].toInt() != 0
 

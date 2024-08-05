@@ -17,7 +17,7 @@ class ConvertToBase10(
         val xValue = nibbles[0].toInt()
         x = r[xValue]    }
 
-    override fun preformOperation() {
+    override fun performOperation() {
         val address = Utili().byteArrayToInt(a.read())
         val value = x.read()[0].toInt()
         val hundreds = value / 100

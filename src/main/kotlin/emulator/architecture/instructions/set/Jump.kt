@@ -16,7 +16,7 @@ class Jump(
         val address = (highNibble shl 8) or (middleNibble shl 4) or lowNibble
         addressBytes = Utili().intToByteArray(address)    }
 
-    override fun preformOperation() {
+    override fun performOperation() {
         p.write(addressBytes)
     }
 

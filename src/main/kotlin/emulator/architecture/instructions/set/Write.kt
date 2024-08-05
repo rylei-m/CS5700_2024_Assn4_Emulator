@@ -19,7 +19,7 @@ class Write(
         x = r[xValue]
     }
 
-    override fun preformOperation() {
+    override fun performOperation() {
         val addressBytes = a.read()
         val address = Utili().byteArrayToInt(addressBytes)
 

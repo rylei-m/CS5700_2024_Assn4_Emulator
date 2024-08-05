@@ -22,7 +22,7 @@ class SkipNotEqual(
         y= r[yValue]
     }
 
-    override fun preformOperation() {
+    override fun performOperation() {
         val xValue = x.read()[0].toInt()
         val yValue = y.read()[0].toInt()
 

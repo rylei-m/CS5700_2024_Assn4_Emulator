@@ -10,7 +10,7 @@ class SwitchMemory(
         TODO("Not yet implemented")
     }
 
-    override fun preformOperation() {
+    override fun performOperation() {
         val currentMValue = m.read()[0].toInt()
         val newMValue = if (currentMValue == 0) { 1 } else { 0 }
         val newMValueBytes = byteArrayOf(newMValue.toByte())

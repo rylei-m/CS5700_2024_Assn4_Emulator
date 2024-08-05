@@ -19,7 +19,7 @@ class Draw(
         row = nibbles[1]
         col = nibbles[2]    }
 
-    override fun preformOperation() {
+    override fun performOperation() {
         val asciiValue = x.read()[0].toInt()
 
         if (asciiValue > 0x7F) {

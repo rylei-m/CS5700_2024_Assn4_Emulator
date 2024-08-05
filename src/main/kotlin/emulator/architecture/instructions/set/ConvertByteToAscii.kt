@@ -17,7 +17,7 @@ class ConvertByteToAscii(
         x = r[rxIndex]
         y = r[ryIndex]    }
 
-    override fun preformOperation() {
+    override fun performOperation() {
         val value = x.read()[0].toInt()
 
         require(value <= 0xF) {}
