@@ -1,5 +1,6 @@
 package emulator.architecture.instructions
 
+import emulator.Utili
 import emulator.architecture.registers.ManageP.P
 
 abstract class Instruction(
@@ -18,8 +19,8 @@ abstract class Instruction(
     abstract fun preformOperation()
 
     open fun incrementProgramCounter() {
-        val currentBI = byteArrayToInt(P.read())
+        val currentBI = Utili().byteArrayToInt(P.read())
         val newBI = currentBI
-        P.write(intToByteArray(newBI))
+        P.write(Utili().intToByteArray(newBI))
     }
 }
