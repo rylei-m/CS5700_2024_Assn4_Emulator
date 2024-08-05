@@ -1,4 +1,4 @@
-package emulator
+package emulator.architecture
 
 import java.util.concurrent.Executors
 import java.util.concurrent.TimeUnit
@@ -29,7 +29,7 @@ class Executor {
         } catch (e: Exception) {
             print("error")
         } finally {
-            executorShutdown()
+            executor.shutdown()
         }
 
     }

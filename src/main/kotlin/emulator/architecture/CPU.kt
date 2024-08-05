@@ -1,6 +1,7 @@
 package emulator.architecture
 
 import emulator.architecture.memory.base.RamNRom.Rom
+import emulator.architecture.registers.ManagerT.t
 
 class CPU(
     val timerSpeed: Long = 500L,     //500 times p/sec
@@ -12,15 +13,38 @@ class CPU(
         try {
             val bytes = readNextInstructionBytes()
             require(bytes.size == 2)
-            //TODO: Byte Logic
+            if (bytes[0].toInt() == 0 && bytes[1].toInt() == 0) {
+                executor.shutdown()
+                return@Runnable
+            }
+            val nibbles01 = breakByteIntoNibbles(bytes[0])
+            val nibbles23 = breakByteIntoNibbles(bytes[1])
+            val nibble0 = nibbles01.first
+            val nibble1 = nibbles01.second
+            val nibble2 = nibbles23.first
+            val nibble3 = nibbles23.second
 
-            return@Runnable
+            //TODO: Instructions
         } catch (e: Exception) {
             executor.shutdown()
             return@Runnable
         }
     }
 
+    val timerRunnable = Runnable {
+        try {
+            if (PauseTimer.pauseTimer.get()) {
+                return@Runnable
+            }
+
+            val currentTime = t.read()[0].toInt()
+            if (currentTime > 0) {
+                t.write(byteArrayOf((currentTime -1).toByte()))
+            }
+        } catch (e: Exception) {
+            print("error")
+        }
+    }
     private fun byteArrayToInt(byteArray: ByteArray) : Int {
         require(ByteArray.size == 2)
         val result = (byteArray[1].toInt() and 0xFF) or ((byteArray[0].toInt() and 0xFF) shl 8)

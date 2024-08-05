@@ -1,6 +1,5 @@
-package emulator
+package emulator.architecture
 
-import java.util.concurrent.TimeUnit
 import java.util.concurrent.atomic.AtomicBoolean
 
 class Timer {
