@@ -1,5 +1,6 @@
 package emulator.architecture
 
+import emulator.Utili
 import emulator.architecture.memory.base.RamNRom.Rom
 import java.util.concurrent.Executors
 import java.util.concurrent.TimeUnit
@@ -10,12 +11,12 @@ class Executor {
 
     fun executeProgram(rom: Rom) {
         this.rom = rom
-        val executor = Executors.newSingleThreadScheduledExecutor()
+        //val executor = Executors.newSingleThreadScheduledExecutor()
 
         val CPUFuture = executor.scheduleAtFixedRate(
             CPU().CPURunnable,
             0,
-            executeInstructions,
+            Utili().executeInstructions,
             TimeUnit.MILLISECONDS
         )
 
