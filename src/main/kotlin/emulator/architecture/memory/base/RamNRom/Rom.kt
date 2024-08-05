@@ -4,9 +4,15 @@ import emulator.architecture.memory.Memory
 import emulator.architecture.memory.base.BasicMemory
 
 object ManageRom {
-    val rom = Rom()
+    private var rom: Rom? = null
 
-    // TODO: Other rom things
+    fun initializeRom(bytes: ByteArray) {
+        rom = Rom(bytes)
+    }
+
+    fun getRom(): Rom {
+        return rom
+    }
 }
 
 class Rom: BasicMemory(
