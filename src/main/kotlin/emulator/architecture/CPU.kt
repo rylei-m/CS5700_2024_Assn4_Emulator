@@ -8,7 +8,7 @@ class CPU(
     val timerSpeed: Long = 500L,     //500 times p/sec
     val executeInstructions: Long = 500L
 ) {
-    private var rom: Rom? = null
+    var rom: Rom? = null
 
     val CPURunnable = Runnable {
         try {
@@ -26,7 +26,7 @@ class CPU(
             val nibble3 = nibbles23.second
 
         val instruction = instructionFactory.createInstruction(nibble0,nibble1,nibble2,nibble3,nibble3)
-        instruction.execute()
+        instruction.Executor().execute()
         } catch (e: Exception) {
             Executor().executor.shutdown()
             return@Runnable

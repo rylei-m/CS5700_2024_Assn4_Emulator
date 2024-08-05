@@ -71,4 +71,12 @@ class Utili {
         val lowNibble = unsignedByte and 0x0F
         return Pair(highNibble.toByte(), lowNibble.toByte())
     }
+
+    fun intToByteArray(newBI: Int): ByteArray {
+        require(newBI in 0..0xFFFF) {}
+        val byteArray = ByteArray(2)
+        byteArray[0] = ((newBI shr 8) and 0xFF).toByte()
+        byteArray[1] = (newBI and 0xFF).toByte()
+        return byteArray
+    }
 }
