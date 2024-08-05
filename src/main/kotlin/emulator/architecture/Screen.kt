@@ -22,7 +22,7 @@ companion object {
         val rowIndex = row.toInt()
         val colIndex = col.toInt()
         if (rowIndex in 0 until BUFFER_HEIGHT && colIndex in 0 until BUFFER_WIDTH) {
-
+            buffer[rowIndex * BUFFER_WIDTH + colIndex] = byte
         } else {
             throw IllegalArgumentException()
         }

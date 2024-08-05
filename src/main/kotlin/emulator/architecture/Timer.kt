@@ -12,7 +12,7 @@ object PauseTimer {
 // Atomic Boolean: A boolean value that may be updated atomically
 
 val timerRunnable = Runnable {
-    try{
+    try {
         if (PauseTimer.pauseTimer.get()) {
             return@Runnable
         }
