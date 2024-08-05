@@ -8,6 +8,7 @@ class RX : Register(
     ByteArray(1)
 ){
     override fun write(bytes: ByteArray) {
-        TODO("Not yet implemented")
+        require(bytes.size == 1)
+        bytes.copyInto(destination = this.bytes, startIndex = 0, endIndex = 1)
     }
 }
