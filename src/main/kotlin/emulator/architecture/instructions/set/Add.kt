@@ -1,4 +1,6 @@
-package emulator.architecture.instructions
+package emulator.architecture.instructions.set
+
+import emulator.architecture.instructions.Instruction
 
 class Add(private val operands: ByteArray) : Instruction(operands) {
     override fun processNibbles() {
