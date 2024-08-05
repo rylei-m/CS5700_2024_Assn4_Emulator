@@ -1,12 +1,12 @@
 package org.example
 
-import emulator.Emulator
+import emulator.architecture.Emulator
 
 fun main() {
-    val computerEmulator = Emulator()
+    val computer = Emulator()
     if (args.isNotEmpty()) {
-        computerEmulator.run(args[0])
+        computer.run(args[0])
     } else {
-        computerEmulator.run()
+        computer.run()
     }
 }
