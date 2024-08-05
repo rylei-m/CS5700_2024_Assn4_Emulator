@@ -2,7 +2,6 @@ package emulator.architecture
 
 import emulator.architecture.memory.base.RamNRom.Rom
 
-
 class CPU(
     val timerSpeed: Long = 500L,     //500 times p/sec
     val executeInstructions: Long = 500L
@@ -12,6 +11,7 @@ class CPU(
     val CPURunnable = Runnable {
         try {
             val bytes = readNextInstructionBytes()
+            require(bytes.size == 2)
             //TODO: Byte Logic
 
             return@Runnable
@@ -21,13 +21,20 @@ class CPU(
         }
     }
 
+    private fun byteArrayToInt(byteArray: ByteArray) : Int {
+        require(ByteArray.size == 2)
+        val result = (byteArray[1].toInt() and 0xFF) or ((byteArray[0].toInt() and 0xFF) shl 8)
+        return result
+    }
+
     private fun readNextInstructionBytes(): ByteArray {
         return try {
-            val byte1 = 1
-            val byte2 = 1
-            byteArrayOf(byte1, byt2)
+            val bi = byteArrayToInt(p.read())
+            val byte1 = rom?.read(bi) ?: 0
+            val byte2 = rom?.read(bi + 1) ?: 0
+            byteArrayOf(byte1, byte2)
         } catch (e: Exception) {
-            byteArrayOf(0,0)
+            byteArrayOf(0, 0)
         }
 
     }
