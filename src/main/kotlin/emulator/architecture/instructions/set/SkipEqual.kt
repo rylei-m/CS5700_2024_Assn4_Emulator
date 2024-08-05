@@ -1,19 +1,33 @@
 package emulator.architecture.instructions.set
 
+import emulator.Utili
 import emulator.architecture.instructions.Instruction
+import emulator.architecture.registers.ManageP.p
+import emulator.architecture.registers.RX
+import emulator.architecture.registers.RXManager.r
 
 class SkipEqual(
     nibbles: ByteArray
 ) : Instruction(nibbles) {
-    public override fun processNibbles() {
-        TODO("Not yet implemented")
+    var shouldSkip = false
+    lateinit var x: RX
+    lateinit var y: RX
+    override fun processNibbles() {
+        val xValue = nibbles[0].toInt()
+        val yValue = nibbles[1].toInt()
+        x = r[xValue]
+        y = r[yValue]
     }
 
-    public override fun preformOperation() {
-        TODO("Not yet implemented")
-    }
+    override fun preformOperation() {
+        val xValue = x.read()[0].toInt()
+        val yValue = y.read()[0].toInt()
 
-    public override fun incrementProgramCounter() {
-        super.incrementProgramCounter()
-    }
+        shouldSkip = (xValue == yValue)    }
+
+    override fun incrementProgramCounter() {
+        val currentBI = Utili().byteArrayToInt(p.read())
+        val offset = if (shouldSkip) 4 else 2
+        val newBI = currentBI + offset
+        p.write(Utili().intToByteArray(newBI))   }
 }

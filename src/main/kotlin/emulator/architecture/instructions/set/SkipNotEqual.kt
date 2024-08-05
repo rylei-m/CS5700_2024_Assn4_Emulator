@@ -2,7 +2,7 @@ package emulator.architecture.instructions.set
 
 import emulator.Utili
 import emulator.architecture.instructions.Instruction
-import emulator.architecture.registers.ManageP.P
+import emulator.architecture.registers.ManageP.p
 import emulator.architecture.registers.RX
 import emulator.architecture.registers.RXManager.r
 
@@ -30,9 +30,9 @@ class SkipNotEqual(
     }
 
     override fun incrementProgramCounter() {
-        val currentBI = Utili().byteArrayToInt(P.read())
+        val currentBI = Utili().byteArrayToInt(p.read())
         val offset = if (shouldSkip) 4 else 2
         val newBI = currentBI + offset
-        P.write(Utili().intToByteArray(newBI))
+        p.write(Utili().intToByteArray(newBI))
     }
 }

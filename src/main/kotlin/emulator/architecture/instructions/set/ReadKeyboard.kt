@@ -1,18 +1,41 @@
 package emulator.architecture.instructions.set
 
+import emulator.Utili
+import emulator.architecture.PauseTimer
 import emulator.architecture.instructions.Instruction
+import emulator.architecture.registers.RX
+import emulator.architecture.registers.RXManager.r
 
 class ReadKeyboard(
     nibbles: ByteArray
 ) : Instruction(nibbles) {
-    public override fun processNibbles() {
-        TODO("Not yet implemented")
+    lateinit var x: RX
+
+    override fun processNibbles() {
+        val xValue = nibbles[0].toInt()
+        x = r[xValue]
     }
 
-    public override fun preformOperation() {
-        TODO("Not yet implemented")
+    override fun performOperation() {
+        PauseTimer.pauseTimer.set(true)
+
+        println("Enter up to 2 hexadecimal digits (0-F): ")
+        val input = readln().trim().uppercase()
+
+        val byte = parseHexInput(input)
+
+        x.write(byteArrayOf(byte))
+
+        PauseTimer.pauseTimer.set(false)
     }
-    private fun parseHexInput() {
-        //TODO: implement
+    private fun parseHexInput(input: String): Byte {
+        if (input.isEmpty() || !input.matches(Regex("^[0-9A-F]*$"))) {
+            return 0
+        }
+
+        return try {
+            val hexString = input.take(2)
+            hexString.toInt(16).toByte()
+        } catch (e: NumberFormatException) { 0 }
     }
 }

@@ -3,7 +3,7 @@ package emulator.architecture.registers
 import emulator.Utili
 
 object ManageP {
-    val P = P()
+    val p = P()
 }
 
 class P : Register(

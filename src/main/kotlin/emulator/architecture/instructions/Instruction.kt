@@ -1,26 +1,27 @@
 package emulator.architecture.instructions
 
 import emulator.Utili
-import emulator.architecture.registers.ManageP.P
+import emulator.architecture.registers.ManageP.p
 
 abstract class Instruction(
-    protected val nibbles: ByteArray) {
+    val nibbles: ByteArray) {
+
     init {
         require(nibbles.size == 3) {}
     }
 
     fun execute() {
         processNibbles()
-        preformOperation()
+        performOperation()
         incrementProgramCounter()
     }
 
     abstract fun processNibbles()
-    abstract fun preformOperation()
+    abstract fun performOperation()
 
     open fun incrementProgramCounter() {
-        val currentBI = Utili().byteArrayToInt(P.read())
-        val newBI = currentBI
-        P.write(Utili().intToByteArray(newBI))
+        val currentBI = Utili().byteArrayToInt(p.read())
+        val newBI = currentBI + 2
+        p.write(Utili().intToByteArray(newBI))
     }
 }

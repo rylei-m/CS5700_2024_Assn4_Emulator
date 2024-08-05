@@ -4,6 +4,7 @@ import emulator.architecture.instructions.set.*
 
 class InstructionFactory {
     private val instructions = arrayOf(
+        ::Store,
         ::Add,
         ::Sub,
         ::Read,
@@ -25,6 +26,6 @@ class InstructionFactory {
         val instructionConstructor = instructions[nibble0.toInt()]
 
         val instruction = instructionConstructor(byteArrayOf(nibble1, nibble2, nibble3))
-        return instructionConstructor(byteArrayOf(nibble1, nibble2, nibble3))
+        return instruction
     }
 }

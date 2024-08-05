@@ -1,15 +1,25 @@
 package emulator.architecture.instructions.set
 
+import emulator.Utili
 import emulator.architecture.instructions.Instruction
+import emulator.architecture.registers.ManageP.p
 
 class Jump(
     nibbles: ByteArray
 ) : Instruction(nibbles) {
-    public override fun processNibbles() {
-        TODO("Not yet implemented")
+    private lateinit var addressBytes: ByteArray
+    override fun processNibbles() {
+        val highNibble = nibbles[0].toInt()
+        val middleNibble = nibbles[1].toInt()
+        val lowNibble = nibbles[2].toInt()
+
+        val address = (highNibble shl 8) or (middleNibble shl 4) or lowNibble
+        addressBytes = Utili().intToByteArray(address)    }
+
+    override fun preformOperation() {
+        p.write(addressBytes)
     }
 
-    public override fun preformOperation() {
-        TODO("Not yet implemented")
+    override fun incrementProgramCounter() {
     }
 }
