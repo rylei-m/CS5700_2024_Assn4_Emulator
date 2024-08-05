@@ -2,7 +2,7 @@ package org.example
 
 import emulator.architecture.Emulator
 
-fun main() {
+fun main(args: Array<String>) {
     val computer = Emulator()
     if (args.isNotEmpty()) {
         computer.run(args[0])
