@@ -1,4 +1,11 @@
 package emulator.architecture.registers
 
-open class Register {
+import emulator.architecture.memory.Memory
+
+abstract class Register(
+    bytes: ByteArray): Memory(bytes) {
+        fun read(): ByteArray {
+            return readBytes
+    }
+        abstract fun write(bytes:ByteArray)
 }
