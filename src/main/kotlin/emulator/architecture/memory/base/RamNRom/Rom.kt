@@ -10,21 +10,20 @@ object ManageRom {
         rom = Rom(bytes)
     }
 
-    fun getRom(): Rom? {
+    fun fetchRom(): Rom? {
         return rom
     }
 }
 
 
 class Rom(
-    bytes: ByteArray): BasicMemory(
-    bytes) {
+    bytes: ByteArray
+): BasicMemory(bytes) {
 
     private val memory = ByteArray(4096)  // 4KB ROM
 
     override fun read(address: Int): Byte {
-        val byte = bytes[address]
-        return byte
+        return bytes[address]
     }
 
     override fun write(address: Int, byte: Byte) {

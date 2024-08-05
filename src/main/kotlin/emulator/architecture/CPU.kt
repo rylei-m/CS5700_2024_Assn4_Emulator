@@ -25,7 +25,7 @@ class CPU(
             val nibble2 = nibbles23.first
             val nibble3 = nibbles23.second
 
-        val instruction = InstructionFactory.createInstruction(nibble0,nibble1,nibble2,nibble3,nibble3)
+        val instruction = InstructionFactory().createInstruction(nibble0,nibble1,nibble2,nibble3)
         instruction.execute()
         } catch (e: Exception) {
             Executor().executor.shutdown()

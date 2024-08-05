@@ -59,7 +59,7 @@ class Utili {
             memory[i] = binaryProgram[i]
         }
         ManageRom.initializeRom(memory)
-        val rom = ManageRom.getRom()
+        val rom = ManageRom.fetchRom()
         if (rom == null) {
             throw IOException()
         }
