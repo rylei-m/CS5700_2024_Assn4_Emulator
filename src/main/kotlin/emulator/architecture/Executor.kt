@@ -1,5 +1,6 @@
 package emulator.architecture
 
+import emulator.architecture.memory.base.RamNRom.Rom
 import java.util.concurrent.Executors
 import java.util.concurrent.TimeUnit
 
