@@ -9,7 +9,9 @@ object ManageRom {
     // TODO: Other rom things
 }
 
-class Rom: BasicMemory() {
+class Rom: BasicMemory(
+    ByteArray(4096)
+) {
     private val memory = ByteArray(4096)  // 4KB ROM
 
     override fun read(address: Int): Byte = memory[address]

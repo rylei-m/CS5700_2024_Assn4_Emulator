@@ -7,7 +7,9 @@ object ManageRam {
     val ram = Ram()
 }
 
-class Ram: BasicMemory() {
+class Ram: BasicMemory(
+    ByteArray(4096)
+) {
     private val memory = ByteArray(4096)  // 4KB RAM
 
     override fun read(address: Int): Byte = memory[address]
