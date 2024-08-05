@@ -45,23 +45,7 @@ class CPU(
             print("error")
         }
     }
-    private fun byteArrayToInt(byteArray: ByteArray) : Int {
-        require(ByteArray.size == 2)
-        val result = (byteArray[1].toInt() and 0xFF) or ((byteArray[0].toInt() and 0xFF) shl 8)
-        return result
-    }
 
-    private fun readNextInstructionBytes(): ByteArray {
-        return try {
-            val bi = byteArrayToInt(p.read())
-            val byte1 = rom?.read(bi) ?: 0
-            val byte2 = rom?.read(bi + 1) ?: 0
-            byteArrayOf(byte1, byte2)
-        } catch (e: Exception) {
-            byteArrayOf(0, 0)
-        }
-
-    }
 }
 
 
