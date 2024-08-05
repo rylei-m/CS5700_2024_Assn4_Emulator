@@ -1,11 +1,11 @@
 package emulator.architecture.registers
 
-object ManagerT {
+object ManageT {
     val t = T()
 }
 
 class T : Register(
-    ByteArray()
+    ByteArray(1)
 ) {
     override fun write(bytes: ByteArray) {
 

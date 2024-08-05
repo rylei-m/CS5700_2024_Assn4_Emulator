@@ -1,9 +1,9 @@
 package emulator.architecture.registers
-object MangagerM {
-    val m= M()
+object MangageM {
+    val m = M()
 }
 class A : Register(
-    ByteArray()
+    ByteArray(1)
 ) {
     override fun write(bytes: ByteArray) {
 

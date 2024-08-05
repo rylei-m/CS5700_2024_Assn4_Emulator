@@ -1,7 +1,7 @@
 package emulator.architecture.registers
 
 object RXManager {
-    val r = arrayOf(R(),R(),R(),R(),R(),R(),R(),R())
+    val r = arrayOf(RX(),RX(),RX(),RX(),RX(),RX(),RX(),RX())
 }
 
 class RX : Register(
