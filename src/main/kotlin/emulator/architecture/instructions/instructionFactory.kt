@@ -1,8 +1,8 @@
 package emulator.architecture.instructions
 
-import emulator.architecture.instructions.set.Add
+import emulator.architecture.instructions.set.*
 
-class instructionFactory {
+class InstructionFactory {
     private val instructions = arrayOf(
         ::Add,
         ::Sub,
@@ -21,14 +21,10 @@ class instructionFactory {
         ::Draw
 
     )
+    fun createInstruction(nibble0: Byte, nibble1: Byte, nibble2: Byte, nibble3: Byte): Instruction {
+        val instructionConstructor = instructions[nibble0.toInt()]
 
-
-    companion object {
-        fun createInstruction(nibble0: Byte, nibble1: Byte, nibble2: Byte, nibble3: Byte, nibble31: Byte): Instruction {
-            val instructionConstructor = instructions[nibble0.toInt()]
-
-            val instruction = instructionConstructor(byteArrayOf(nibble1, nibble2, nibble3))
-            return instructionConstructor(byteArrayOf(nibble1, nibble2, nibble3))
-        }
+        val instruction = instructionConstructor(byteArrayOf(nibble1, nibble2, nibble3))
+        return instructionConstructor(byteArrayOf(nibble1, nibble2, nibble3))
     }
 }

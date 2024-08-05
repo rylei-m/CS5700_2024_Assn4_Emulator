@@ -1,4 +1,15 @@
 package emulator.architecture.instructions.set
 
-class Read {
+import emulator.architecture.instructions.Instruction
+
+class Read(
+    nibbles: ByteArray
+) : Instruction(nibbles) {
+    public override fun processNibbles() {
+        TODO("Not yet implemented")
+    }
+
+    public override fun preformOperation() {
+        TODO("Not yet implemented")
+    }
 }

@@ -1,4 +1,38 @@
 package emulator.architecture.instructions.set
 
-class SkipNotEqual {
+import emulator.Utili
+import emulator.architecture.instructions.Instruction
+import emulator.architecture.registers.ManageP.P
+import emulator.architecture.registers.RX
+import emulator.architecture.registers.RXManager.r
+
+class SkipNotEqual(
+    nibbles: ByteArray
+) : Instruction(nibbles) {
+
+    var shouldSkip = false
+
+    lateinit var x: RX
+    lateinit var y: RX
+
+    override fun processNibbles() {
+        val xValue = nibbles[0].toInt()
+        val yValue = nibbles[1].toInt()
+        x = r[xValue]
+        y= r[yValue]
+    }
+
+    override fun preformOperation() {
+        val xValue = x.read()[0].toInt()
+        val yValue = y.read()[0].toInt()
+
+        shouldSkip = (xValue != yValue)
+    }
+
+    override fun incrementProgramCounter() {
+        val currentBI = Utili().byteArrayToInt(P.read())
+        val offset = if (shouldSkip) 4 else 2
+        val newBI = currentBI + offset
+        P.write(Utili().intToByteArray(newBI))
+    }
 }

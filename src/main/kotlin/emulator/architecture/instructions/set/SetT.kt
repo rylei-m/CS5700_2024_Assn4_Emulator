@@ -1,4 +1,15 @@
 package emulator.architecture.instructions.set
 
-class SetT {
+import emulator.architecture.instructions.Instruction
+
+class SetT(
+    nibbles: ByteArray
+) : Instruction(nibbles) {
+    public override fun processNibbles() {
+        TODO("Not yet implemented")
+    }
+
+    public override fun preformOperation() {
+        TODO("Not yet implemented")
+    }
 }

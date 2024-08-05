@@ -3,7 +3,7 @@ package emulator.architecture
 import emulator.Utili
 import emulator.architecture.memory.base.RamNRom.Rom
 import emulator.architecture.registers.ManageT.t
-import emulator.architecture.instructions.instructionFactory
+import emulator.architecture.instructions.InstructionFactory
 class CPU(
     val timerSpeed: Long = 500L,     //500 times p/sec
     val executeInstructions: Long = 500L
@@ -25,7 +25,7 @@ class CPU(
             val nibble2 = nibbles23.first
             val nibble3 = nibbles23.second
 
-        val instruction = instructionFactory.createInstruction(nibble0,nibble1,nibble2,nibble3,nibble3)
+        val instruction = InstructionFactory.createInstruction(nibble0,nibble1,nibble2,nibble3,nibble3)
         instruction.execute()
         } catch (e: Exception) {
             Executor().executor.shutdown()
