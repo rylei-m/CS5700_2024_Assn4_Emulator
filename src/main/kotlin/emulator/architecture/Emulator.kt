@@ -9,9 +9,12 @@ class Emulator {
     private val cpu = CPU() // for executing prog
 
     fun run(programPath: String? = null) {
-        val pathToBinary = programPath ?: throw IllegalArgumentException("Path cannot be null")
+        var pathToBinary = programPath
 
         try {
+            if (pathToBinary == null) {
+                pathToBinary = Utili().getPathToBinary()
+            }
             val file = File(pathToBinary)
             val binaryProgram = Utili().binaryProgramFromFile(file)
             val rom = Utili().romFromBinaryProgram(binaryProgram)

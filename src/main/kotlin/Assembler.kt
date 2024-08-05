@@ -1,4 +1,4 @@
-package emulator// Josephs Code
+// Josephs Code
 
 import java.io.File
 

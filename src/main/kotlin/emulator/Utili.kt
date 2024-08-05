@@ -3,7 +3,7 @@ package emulator
 import emulator.architecture.memory.base.RamNRom.ManageRom
 import emulator.architecture.memory.base.RamNRom.ManageRom.rom
 import emulator.architecture.memory.base.RamNRom.Rom
-import emulator.architecture.registers.ManageP.P
+import emulator.architecture.registers.ManageP.p
 import java.io.File
 import java.io.IOException
 
@@ -28,7 +28,7 @@ class Utili {
 
     fun readNextInstructionBytes(): ByteArray {
         return try {
-            val bi = byteArrayToInt(P.read())
+            val bi = byteArrayToInt(p.read())
             val byte1 = rom?.read(bi) ?: 0
             val byte2 = rom?.read(bi + 1) ?: 0
             byteArrayOf(byte1, byte2)
@@ -78,5 +78,11 @@ class Utili {
         byteArray[0] = ((newBI shr 8) and 0xFF).toByte()
         byteArray[1] = (newBI and 0xFF).toByte()
         return byteArray
+    }
+    fun combineNibblesToByte(highNibble: Byte, lowNibble: Byte): Byte {
+        val highNibbleInt = (highNibble.toInt() and 0x0F)
+        val lowNibbleInt = (lowNibble.toInt() and 0x0F)
+        val combinedByte = (highNibbleInt shl 4) or lowNibbleInt
+        return combinedByte.toByte()
     }
 }
