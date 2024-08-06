@@ -1,6 +1,6 @@
 package emulator.architecture.instructions
 
-import emulator.Utili
+import emulator.architecture.Utili
 import emulator.architecture.registers.ManageP.p
 
 abstract class Instruction(

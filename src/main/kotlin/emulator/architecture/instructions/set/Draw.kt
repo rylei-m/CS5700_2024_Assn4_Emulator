@@ -1,6 +1,6 @@
 package emulator.architecture.instructions.set
 
-import emulator.architecture.Screen
+import emulator.architecture.fundamentals.Screen
 import emulator.architecture.instructions.Instruction
 import emulator.architecture.registers.RX
 import emulator.architecture.registers.RXManager.r

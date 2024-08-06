@@ -1,6 +1,6 @@
 package org.example
 
-import emulator.architecture.Emulator
+import emulator.Emulator
 
 fun main(args: Array<String>) {
     val computer = Emulator()

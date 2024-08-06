@@ -1,5 +1,6 @@
-package emulator.architecture
+package emulator.architecture.fundamentals
 
+import emulator.architecture.registers.ManageT.t
 import java.util.concurrent.atomic.AtomicBoolean
 
 class Timer {
@@ -17,6 +18,11 @@ val timerRunnable = Runnable {
             return@Runnable
         }
 
+        val currentTime = t.read()[0].toInt()
+        if (currentTime > 0) {
+            t.write(byteArrayOf((currentTime -1).toByte()))
+        }
+        
     } catch (e: Exception) {
         print("error")
     }

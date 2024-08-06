@@ -1,7 +1,7 @@
 package emulator.architecture.instructions.set
 
-import emulator.Utili
-import emulator.architecture.PauseTimer
+import emulator.architecture.Utili
+import emulator.architecture.fundamentals.PauseTimer
 import emulator.architecture.instructions.Instruction
 import emulator.architecture.registers.ManageT.t
 

@@ -1,8 +1,7 @@
-package emulator.architecture
+package emulator.architecture.fundamentals
 
-import emulator.Utili
-import emulator.architecture.instructions.Instruction
-import emulator.architecture.memory.base.RamNRom.Rom
+import emulator.architecture.CPU
+import emulator.architecture.memory.base.types.Rom
 import java.util.concurrent.Executors
 import java.util.concurrent.TimeUnit
 
@@ -13,7 +12,7 @@ class Executor {
     val timerSpeed: Long = 16L
 
     fun executeProgram(rom: Rom) {
-        val CPUFuture = executor.scheduleAtFixedRate(
+        val cpuFuture = executor.scheduleAtFixedRate(
             CPU().cpuRunnable,
             0,
             instructionSpeed,
@@ -29,7 +28,7 @@ class Executor {
 
         try {
             timerFuture.get()
-            CPUFuture.get()
+            cpuFuture.get()
         } catch (e: Exception) {
             print("error")
         } finally {

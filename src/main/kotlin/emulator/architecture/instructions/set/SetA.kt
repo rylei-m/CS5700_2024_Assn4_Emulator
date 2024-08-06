@@ -1,6 +1,6 @@
 package emulator.architecture.instructions.set
 
-import emulator.Utili
+import emulator.architecture.Utili
 import emulator.architecture.instructions.Instruction
 import emulator.architecture.registers.ManageA.a
 

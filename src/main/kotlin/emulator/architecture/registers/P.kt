@@ -1,6 +1,6 @@
 package emulator.architecture.registers
 
-import emulator.Utili
+import emulator.architecture.Utili
 
 object ManageP {
     val p = P()

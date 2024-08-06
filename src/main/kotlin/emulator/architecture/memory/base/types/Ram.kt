@@ -1,6 +1,5 @@
-package emulator.architecture.memory.base.RamNRom
+package emulator.architecture.memory.base.types
 
-import emulator.architecture.memory.Memory
 import emulator.architecture.memory.base.BasicMemory
 
 object ManageRam {

@@ -1,8 +1,8 @@
-package emulator.architecture
+package emulator
 
-import emulator.architecture.memory.base.RamNRom.ManageRom.rom
-import emulator.Utili
-import java.io.File
+import emulator.architecture.CPU
+import emulator.architecture.fundamentals.Executor
+import emulator.help.Helper
 import java.io.IOException
 
 class Emulator {
@@ -13,11 +13,11 @@ class Emulator {
 
         try {
             if (pathToBinary == null) {
-                pathToBinary = Utili().getPathToBinary()
+                pathToBinary = Helper().pathToBinary()
             }
-            val file = File(pathToBinary)
-            val binaryProgram = Utili().binaryProgramFromFile(file)
-            val rom = Utili().romFromBinaryProgram(binaryProgram)
+            val binaryFile = Helper().getBinary(pathToBinary)
+            val binaryProgram = Helper().binaryProgramFromFile(Helper().getBinary(binaryFile.toString()))
+            val rom = Helper().romFromBinaryProgram(binaryProgram)
             Executor().executeProgram(rom)
         } catch (e: IOException) {
             println("error IOException")

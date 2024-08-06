@@ -1,7 +1,6 @@
 package emulator.architecture.instructions.set
 
-import emulator.Utili
-import emulator.architecture.PauseTimer
+import emulator.architecture.fundamentals.PauseTimer
 import emulator.architecture.instructions.Instruction
 import emulator.architecture.registers.RX
 import emulator.architecture.registers.RXManager.r

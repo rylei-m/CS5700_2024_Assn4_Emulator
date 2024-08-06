@@ -1,9 +1,9 @@
 package emulator.architecture.instructions.set
 
-import emulator.Utili
+import emulator.architecture.Utili
 import emulator.architecture.instructions.Instruction
-import emulator.architecture.memory.base.RamNRom.ManageRam.ram
-import emulator.architecture.memory.base.RamNRom.ManageRom
+import emulator.architecture.memory.base.types.ManageRam.ram
+import emulator.architecture.memory.base.types.ManageRom
 import emulator.architecture.registers.ManageA.a
 import emulator.architecture.registers.ManageM.m
 import emulator.architecture.registers.RX
