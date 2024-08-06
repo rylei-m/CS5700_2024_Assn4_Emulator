@@ -1,5 +1,6 @@
 package emulator.architecture
 
+import emulator.Facade
 import emulator.architecture.fundamentals.Executor
 import emulator.architecture.fundamentals.PauseTimer
 import emulator.architecture.memory.base.types.Rom
@@ -32,7 +33,7 @@ class CPU(
             val nibble3 = nibbles23.second
 
         val instruction = InstructionFactory().createInstruction(nibble0,nibble1,nibble2,nibble3)
-        instruction.execute()
+        instruction.execute(Facade)
         } catch (e: Exception) {
             Executor().executor.shutdown()
             return@Runnable

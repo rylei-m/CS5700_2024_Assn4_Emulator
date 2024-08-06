@@ -6,12 +6,12 @@ import emulator.architecture.registers.RX
 import emulator.architecture.registers.RXManager.r
 
 class ReadKeyboard(
-    nibbles: ByteArray
+    nibbles: UByteArray
 ) : Instruction(nibbles) {
     lateinit var x: RX
 
     override fun processNibbles() {
-        val xValue = nibbles[0].toInt()
+        val xValue = nibbles[0].toUByte().toInt()
         x = r[xValue]
     }
 

@@ -6,14 +6,14 @@ import emulator.architecture.instructions.Instruction
 import emulator.architecture.registers.ManageT.t
 
 class SetT(
-    nibbles: ByteArray
+    nibbles: UByteArray
 ) : Instruction(nibbles) {
 
     var value: Byte = 0
 
     override fun processNibbles() {
-        val highNibble = nibbles[0]
-        val lowNibble = nibbles[1]
+        val highNibble = nibbles[0].toUByte()
+        val lowNibble = nibbles[1].toUByte()
 
         value = Utili().combineNibblesToByte(highNibble, lowNibble)
     }

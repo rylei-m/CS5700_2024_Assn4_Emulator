@@ -5,6 +5,6 @@ import emulator.architecture.memory.Memory
 abstract class BasicMemory(
     bytes: UByteArray
 ): Memory(bytes) {
-    abstract fun read(address: Int): Byte
-    abstract fun write(address: Int, byte: Byte)
+    abstract fun read(address: Int): UByte
+    abstract fun write(address: Int, byte: UByte)
 }

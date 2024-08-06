@@ -5,7 +5,7 @@ import emulator.architecture.memory.base.BasicMemory
 object ManageRom {
     var rom: Rom? = null
 
-    fun initializeRom(bytes: ByteArray) {
+    fun initializeRom(bytes: UByteArray) {
         rom = Rom(bytes)
     }
 
@@ -16,16 +16,16 @@ object ManageRom {
 
 
 class Rom(
-    bytes: ByteArray
+    bytes: UByteArray
 ): BasicMemory(bytes) {
 
-    private val memory = ByteArray(4096)  // 4KB ROM
+    private val memory = UByteArray(4096)  // 4KB ROM
 
-    override fun read(address: Int): Byte {
+    override fun read(address: Int): UByte {
         return bytes[address]
     }
 
-    override fun write(address: Int, byte: Byte) {
+    override fun write(address: Int, byte: UByte) {
         throw UnsupportedOperationException("ROM is read-only")
     }
 }

@@ -13,8 +13,8 @@ class Add(
 
     override fun processNibbles() {
         val xValue = nibbles[0].toUByte().toInt()
-        val yValue = nibbles[1].toInt()
-        val zValue = nibbles[2].toInt()
+        val yValue = nibbles[1].toUByte().toInt()
+        val zValue = nibbles[2].toUByte().toInt()
 
         x = r[xValue]
         y = r[yValue]

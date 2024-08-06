@@ -5,9 +5,9 @@ object ManageT {
 }
 
 class T : Register(
-    ByteArray(1)
+    UByteArray(1)
 ) {
-    override fun write(bytes: ByteArray) {
+    override fun write(bytes: UByteArray) {
         require(bytes.size == 1)
         bytes.copyInto(destination = this.bytes, startIndex = 0, endIndex = 1)
     }

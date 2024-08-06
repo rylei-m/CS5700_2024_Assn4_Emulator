@@ -7,14 +7,14 @@ import emulator.architecture.registers.RX
 import emulator.architecture.registers.RXManager.r
 
 class SkipEqual(
-    nibbles: ByteArray
+    nibbles: UByteArray
 ) : Instruction(nibbles) {
     var shouldSkip = false
     lateinit var x: RX
     lateinit var y: RX
     override fun processNibbles() {
-        val xValue = nibbles[0].toInt()
-        val yValue = nibbles[1].toInt()
+        val xValue = nibbles[0].toUByte().toInt()
+        val yValue = nibbles[1].toUByte().toInt()
         x = r[xValue]
         y = r[yValue]
     }

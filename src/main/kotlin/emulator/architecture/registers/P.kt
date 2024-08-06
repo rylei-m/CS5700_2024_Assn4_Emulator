@@ -7,9 +7,9 @@ object ManageP {
 }
 
 class P : Register(
-    ByteArray(2)
+    UByteArray(2)
 ) {
-    override fun write(bytes: ByteArray) {
+    override fun write(bytes: UByteArray) {
         require(bytes.size == 2)
         val intValue = Utili().byteArrayToInt(bytes)
         require(intValue % 2 == 0)

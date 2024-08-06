@@ -9,11 +9,11 @@ object ManageRam {
 class Ram: BasicMemory(
     UByteArray(4096)
 ) {
-    private val memory = ByteArray(4096)  // 4KB RAM
+    private val memory = UByteArray(4096)  // 4KB RAM
 
-    override fun read(address: Int): Byte = memory[address]
+    override fun read(address: Int): UByte = memory[address]
 
-    override fun write(address: Int, byte: Byte) {
+    override fun write(address: Int, byte: UByte) {
         bytes[address] = byte
     }
 }

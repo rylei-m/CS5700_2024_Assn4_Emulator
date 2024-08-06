@@ -11,8 +11,8 @@ class ConvertByteToAscii(
     lateinit var x: RX
     lateinit var y: RX
     override fun processNibbles() {
-        val rxIndex = nibbles[0].toInt()
-        val ryIndex = nibbles[1].toInt()
+        val rxIndex = nibbles[0].toUByte().toInt()
+        val ryIndex = nibbles[1].toUByte().toInt()
 
         x = r[rxIndex]
         y = r[ryIndex]    }

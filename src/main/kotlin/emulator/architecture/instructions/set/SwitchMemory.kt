@@ -4,7 +4,7 @@ import emulator.architecture.instructions.Instruction
 import emulator.architecture.registers.ManageM.m
 
 class SwitchMemory(
-    nibbles: ByteArray
+    nibbles: UByteArray
 ) : Instruction(nibbles) {
     override fun processNibbles() {
         TODO("Not yet implemented")

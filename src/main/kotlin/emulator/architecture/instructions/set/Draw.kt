@@ -14,7 +14,7 @@ class Draw(
     var col: Byte = 0
 
     override fun processNibbles() {
-        val xValue = nibbles[0].toInt()
+        val xValue = nibbles[0].toUByte().toInt()
         x = r[xValue]
         row = nibbles[1]
         col = nibbles[2]    }

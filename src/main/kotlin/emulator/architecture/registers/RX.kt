@@ -5,7 +5,7 @@ object RXManager {
 }
 
 class RX : Register(
-    ByteArray(1)
+    UByteArray(1)
 ){
     override fun write(bytes: UByteArray) {
         require(bytes.size == 1)

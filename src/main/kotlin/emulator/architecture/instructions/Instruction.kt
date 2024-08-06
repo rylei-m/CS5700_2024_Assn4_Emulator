@@ -2,15 +2,16 @@ package emulator.architecture.instructions
 
 import emulator.architecture.Utili
 import emulator.architecture.registers.ManageP.p
+import emulator.Facade
 
 abstract class Instruction(
-    val nibbles: ByteArray) {
+    val nibbles: UByteArray) {
 
     init {
         require(nibbles.size == 3) {}
     }
 
-    fun execute(facade) {
+    fun execute(Facade) {
         processNibbles()
         performOperation()
         incrementProgramCounter()

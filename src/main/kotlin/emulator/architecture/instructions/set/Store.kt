@@ -6,23 +6,23 @@ import emulator.architecture.registers.RX
 import emulator.architecture.registers.RXManager.r
 
 class Store(
-    nibbles: ByteArray
+    nibbles: UByteArray
 ) : Instruction(nibbles) {
 
     lateinit var x: RX
-    var byte: Byte = 0
+    var byte: UByte = 0u
 
     override fun processNibbles() {
-        val xValue = nibbles[0].toInt()
+        val xValue = nibbles[0].toUByte().toInt()
         x = r[xValue]
 
-        val highNibble = nibbles[1]
-        val lowNibble = nibbles[2]
+        val highNibble = nibbles[1].toUByte()
+        val lowNibble = nibbles[2].toUByte()
 
         byte = Utili().combineNibblesToByte(highNibble, lowNibble)
     }
 
     override fun performOperation() {
-        x.write(byteArrayOf(byte))
+        x.write(ubyteArrayOf(byte))
     }
 }
