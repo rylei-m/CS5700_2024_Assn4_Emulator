@@ -12,7 +12,7 @@ class Add(
     private lateinit var z: RX
 
     override fun processNibbles() {
-        val xValue = nibbles[0].toInt()
+        val xValue = nibbles[0].toUByte().toInt()
         val yValue = nibbles[1].toInt()
         val zValue = nibbles[2].toInt()
 

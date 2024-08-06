@@ -7,7 +7,7 @@ object ManageRam {
 }
 
 class Ram: BasicMemory(
-    ByteArray(4096)
+    UByteArray(4096)
 ) {
     private val memory = ByteArray(4096)  // 4KB RAM
 

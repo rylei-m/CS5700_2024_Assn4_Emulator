@@ -26,5 +26,5 @@ class Draw(
             throw IllegalArgumentException()
         }
 
-        Screen().draw(asciiValue.toByte(), row, col)    }
+        Screen().draw(asciiValue.toUByte(), row, col)    }
 }

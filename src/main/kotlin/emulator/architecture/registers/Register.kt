@@ -3,7 +3,7 @@ package emulator.architecture.registers
 import emulator.architecture.memory.Memory
 
 abstract class Register(
-    bytes: ByteArray
+    bytes: UByteArray
 ): Memory(bytes) {
         fun read(): ByteArray {
             val readBytes = bytes.copyOf()

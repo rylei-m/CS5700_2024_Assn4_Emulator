@@ -9,7 +9,7 @@ companion object {
     const val BUFFER_HEIGHT = 8
     const val BUFFER_WIDTH = 8
 }
-    private val buffer: ByteArray = ByteArray(BUFFER_HEIGHT * BUFFER_WIDTH)
+    private val buffer: UByteArray = UByteArray(BUFFER_HEIGHT * BUFFER_WIDTH)
 
     private fun display() {
         for (row in 0 until  BUFFER_HEIGHT) {
@@ -23,7 +23,7 @@ companion object {
         println("=".repeat(BUFFER_WIDTH))
     }
 
-    fun draw(byte: Byte, row: Byte, col: Byte) {
+    fun draw(byte: UByte, row: Byte, col: Byte) {
         val rowIndex = row.toInt()
         val colIndex = col.toInt()
         if (rowIndex in 0 until BUFFER_HEIGHT && colIndex in 0 until BUFFER_WIDTH) {

@@ -10,7 +10,7 @@ abstract class Instruction(
         require(nibbles.size == 3) {}
     }
 
-    fun execute() {
+    fun execute(facade) {
         processNibbles()
         performOperation()
         incrementProgramCounter()
