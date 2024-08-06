@@ -1,13 +1,14 @@
 package emulator.help
 
+import emulator.Facade.ManageP.p
 import emulator.architecture.Utili
 import emulator.architecture.memory.base.types.ManageRom
 import emulator.architecture.memory.base.types.ManageRom.rom
 import emulator.architecture.memory.base.types.Rom
-import emulator.architecture.registers.ManageP.p
 import java.io.File
 import java.io.IOException
 
+@OptIn(ExperimentalUnsignedTypes::class)
 class Helper {
 
     fun getBinary(pathToBinaryFile: String): File {
@@ -18,14 +19,14 @@ class Helper {
         return file
     }
 
-    fun readNextInstructionBytes(): ByteArray {
+    fun readNextInstructionBytes(): UByteArray {
         return try {
             val bi = Utili().byteArrayToInt(p.read())
             val byte1 = rom?.read(bi) ?: 0
             val byte2 = rom?.read(bi + 1) ?: 0
-            byteArrayOf(byte1, byte2)
+            ubyteArrayOf(byte1 as UByte, byte2 as UByte).toUByteArray()
         } catch (e: Exception) {
-            byteArrayOf(0, 0)
+            ubyteArrayOf(0u, 0u)
         }
 
     }
@@ -37,24 +38,21 @@ class Helper {
 
 
 
-    fun binaryProgramFromFile(binaryFile: File): ByteArray {
+    fun binaryProgramFromFile(binaryFile: File): UByteArray {
         return try {
-            binaryFile.readBytes()
+            binaryFile.readBytes().toUByteArray()
         } catch (e: IOException) {
             throw IOException()
         }
     }
 
-    fun romFromBinaryProgram(binaryProgram: ByteArray): Rom {
-        val memory = ByteArray(4096)
+    fun romFromBinaryProgram(binaryProgram: UByteArray): Rom {
+        val memory = UByteArray(4096)
         for (i in binaryProgram.indices) {
             memory[i] = binaryProgram[i]
         }
         ManageRom.initializeRom(memory)
-        val rom = ManageRom.fetchRom()
-        if (rom == null) {
-            throw IOException()
-        }
+        val rom = ManageRom.fetchRom() ?: throw IOException()
         return rom
     }
 

@@ -1,9 +1,10 @@
 package emulator.architecture.instructions
 
-import emulator.architecture.Utili
-import emulator.architecture.registers.ManageP.p
 import emulator.Facade
+import emulator.architecture.Utili
+import emulator.Facade.ManageP.p
 
+@OptIn(ExperimentalUnsignedTypes::class)
 abstract class Instruction(
     val nibbles: UByteArray) {
 
@@ -11,7 +12,7 @@ abstract class Instruction(
         require(nibbles.size == 3) {}
     }
 
-    fun execute(Facade) {
+    fun execute(facade: Facade) {
         processNibbles()
         performOperation()
         incrementProgramCounter()

@@ -1,11 +1,12 @@
 package emulator.architecture.instructions.set
 
+import emulator.Facade.RXManager.r
 import emulator.architecture.instructions.Instruction
 import emulator.architecture.registers.RX
-import emulator.architecture.registers.RXManager.r
 
+@OptIn(ExperimentalUnsignedTypes::class)
 class Add(
-    nibbles: ByteArray
+    nibbles: UByteArray
 ) : Instruction(nibbles) {
     private lateinit var x: RX
     private lateinit var y: RX
@@ -21,11 +22,11 @@ class Add(
         z = r[zValue]
     }
     override fun performOperation() {
-        val xValue = x.read()[0].toInt()
-        val yValue = y.read()[0].toInt()
+        val xValue = x.read()[0].toUByte().toInt()
+        val yValue = y.read()[0].toUByte().toInt()
 
-        val result = (xValue + yValue).toByte()
+        val result = (xValue + yValue).toUByte()
 
-        z.write(byteArrayOf(result))
+        z.write(ubyteArrayOf(result.toUByte()))
     }
 }

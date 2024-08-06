@@ -1,10 +1,11 @@
 package emulator.architecture.instructions.set
 
+import emulator.Facade.RXManager.r
 import emulator.architecture.fundamentals.PauseTimer
 import emulator.architecture.instructions.Instruction
 import emulator.architecture.registers.RX
-import emulator.architecture.registers.RXManager.r
 
+@OptIn(ExperimentalUnsignedTypes::class)
 class ReadKeyboard(
     nibbles: UByteArray
 ) : Instruction(nibbles) {
@@ -23,7 +24,7 @@ class ReadKeyboard(
 
         val byte = parseHexInput(input)
 
-        x.write(byteArrayOf(byte))
+        x.write(ubyteArrayOf(byte.toUByte()))
 
         PauseTimer.pauseTimer.set(false)
     }

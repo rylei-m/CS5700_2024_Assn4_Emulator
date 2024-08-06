@@ -1,11 +1,12 @@
 package emulator.architecture.instructions.set
 
+import emulator.Facade.ManageP.p
+import emulator.Facade.RXManager.r
 import emulator.architecture.Utili
 import emulator.architecture.instructions.Instruction
-import emulator.architecture.registers.ManageP.p
 import emulator.architecture.registers.RX
-import emulator.architecture.registers.RXManager.r
 
+@OptIn(ExperimentalUnsignedTypes::class)
 class SkipEqual(
     nibbles: UByteArray
 ) : Instruction(nibbles) {

@@ -1,15 +1,16 @@
 package emulator.architecture.instructions.set
 
+import emulator.Facade.ManageT.t
 import emulator.architecture.Utili
 import emulator.architecture.fundamentals.PauseTimer
 import emulator.architecture.instructions.Instruction
-import emulator.architecture.registers.ManageT.t
 
+@OptIn(ExperimentalUnsignedTypes::class)
 class SetT(
     nibbles: UByteArray
 ) : Instruction(nibbles) {
 
-    var value: Byte = 0
+    private var value: UByte = 0u
 
     override fun processNibbles() {
         val highNibble = nibbles[0].toUByte()
@@ -21,7 +22,7 @@ class SetT(
     override fun performOperation() {
         PauseTimer.pauseTimer.set(true)
 
-        t.write(byteArrayOf(value))
+        t.write(ubyteArrayOf(value))
 
         PauseTimer.pauseTimer.set(false)
     }

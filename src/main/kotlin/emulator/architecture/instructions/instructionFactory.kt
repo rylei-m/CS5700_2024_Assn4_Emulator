@@ -3,6 +3,7 @@ package emulator.architecture.instructions
 import emulator.architecture.instructions.set.*
 
 class InstructionFactory {
+    @OptIn(ExperimentalUnsignedTypes::class)
     private val instructions = arrayOf(
         ::Store,
         ::Add,
@@ -22,10 +23,11 @@ class InstructionFactory {
         ::Draw
 
     )
-    fun createInstruction(nibble0: Byte, nibble1: Byte, nibble2: Byte, nibble3: Byte): Instruction {
+    fun createInstruction(nibble0: UByte, nibble1: UByte, nibble2: UByte, nibble3: UByte): Instruction {
         val instructionConstructor = instructions[nibble0.toInt()]
 
-        val instruction = instructionConstructor(byteArrayOf(nibble1, nibble2, nibble3))
-        return instruction
+        //val instruction = instructionConstructor(ubyteArrayOf(nibble1, nibble2, nibble3))
+        //return instruction
+        return instructionConstructor(ubyteArrayOf(nibble1, nibble2, nibble3))
     }
 }

@@ -2,16 +2,15 @@ package emulator.architecture
 
 import emulator.Facade
 import emulator.architecture.fundamentals.Executor
-import emulator.architecture.fundamentals.PauseTimer
 import emulator.architecture.memory.base.types.Rom
-import emulator.architecture.registers.ManageT.t
 import emulator.architecture.instructions.InstructionFactory
 import emulator.help.Helper
 import java.util.concurrent.Executors
 
+@OptIn(ExperimentalUnsignedTypes::class)
 class CPU(
     val timerSpeed: Long = 2L,     //500 times p/sec
-    val executeInstructions: Long = 5L
+    val executeInstructions: Long = 5L,
 ) {
     private val executor = Executors.newSingleThreadScheduledExecutor()
     private val instructionFactory = InstructionFactory()
@@ -22,7 +21,7 @@ class CPU(
             val bytes = Helper().readNextInstructionBytes()
             require(bytes.size == 2)
             if (bytes[0].toInt() == 0 && bytes[1].toInt() == 0) {
-                Executor().executor.shutdown()
+                executor.shutdown()
                 return@Runnable
             }
             val nibbles01 = Utili().breakByteIntoNibbles(bytes[0])
@@ -33,9 +32,9 @@ class CPU(
             val nibble3 = nibbles23.second
 
         val instruction = InstructionFactory().createInstruction(nibble0,nibble1,nibble2,nibble3)
-        instruction.execute(Facade)
+        instruction.execute(Facade())
         } catch (e: Exception) {
-            Executor().executor.shutdown()
+            executor.shutdown()
             return@Runnable
         }
     }

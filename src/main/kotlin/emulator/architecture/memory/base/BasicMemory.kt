@@ -2,6 +2,7 @@ package emulator.architecture.memory.base
 
 import emulator.architecture.memory.Memory
 
+@OptIn(ExperimentalUnsignedTypes::class)
 abstract class BasicMemory(
     bytes: UByteArray
 ): Memory(bytes) {

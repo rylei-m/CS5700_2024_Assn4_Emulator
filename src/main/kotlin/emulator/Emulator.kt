@@ -6,11 +6,13 @@ import emulator.help.Helper
 import java.io.IOException
 
 class Emulator {
-    private val cpu = CPU() // for executing prog
+    //private val cpu = CPU() // for executing prog
+    private val facade = Facade()
 
     fun run() {
         try {
-            val pathToBinary = Helper().pathToBinary()
+            val pathToBinary = facade.helper.pathToBinary()
+            facade.loadAndRunProgram(pathToBinary)
             val binaryFile = Helper().getBinary(pathToBinary)
             val binaryProgram = Helper().binaryProgramFromFile(Helper().getBinary(binaryFile.toString()))
             val rom = Helper().romFromBinaryProgram(binaryProgram)

@@ -1,14 +1,15 @@
 package emulator.architecture.instructions.set
 
+import emulator.Facade.ManageA.a
 import emulator.architecture.Utili
 import emulator.architecture.instructions.Instruction
-import emulator.architecture.registers.ManageA.a
 
+@OptIn(ExperimentalUnsignedTypes::class)
 class SetA(
     nibbles: UByteArray
 ) : Instruction(nibbles) {
-    lateinit var addressBytes: ByteArray
-
+    //lateinit var addressBytes: UByteArray
+    private var addressBytes: UByteArray = UByteArray(0)
     override fun processNibbles() {
         val highNibble = nibbles[0].toUByte().toInt()
         val middleNibble = nibbles[1].toUByte().toInt()

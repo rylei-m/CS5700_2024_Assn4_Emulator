@@ -1,13 +1,14 @@
 package emulator.architecture.instructions.set
 
+import emulator.Facade.ManageP.p
 import emulator.architecture.Utili
 import emulator.architecture.instructions.Instruction
-import emulator.architecture.registers.ManageP.p
 
+@OptIn(ExperimentalUnsignedTypes::class)
 class Jump(
-    nibbles: ByteArray
+    nibbles: UByteArray
 ) : Instruction(nibbles) {
-    private lateinit var addressBytes: ByteArray
+    private var addressBytes: UByteArray = UByteArray(0)
     override fun processNibbles() {
         val highNibble = nibbles[0].toUByte().toInt()
         val middleNibble = nibbles[1].toUByte().toInt()

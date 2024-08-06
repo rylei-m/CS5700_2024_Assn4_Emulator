@@ -1,26 +1,28 @@
 package emulator.architecture.instructions.set
 
+import emulator.Facade.RXManager.r
 import emulator.architecture.fundamentals.Screen
 import emulator.architecture.instructions.Instruction
 import emulator.architecture.registers.RX
-import emulator.architecture.registers.RXManager.r
 
+@OptIn(ExperimentalUnsignedTypes::class)
 class Draw(
-    nibbles: ByteArray
+    nibbles: UByteArray
 ) : Instruction(nibbles) {
 
     lateinit var x: RX
-    var row: Byte = 0
-    var col: Byte = 0
+    var row: UByte = 0u
+    var col: UByte = 0u
 
     override fun processNibbles() {
         val xValue = nibbles[0].toUByte().toInt()
         x = r[xValue]
         row = nibbles[1]
-        col = nibbles[2]    }
+        col = nibbles[2]
+    }
 
     override fun performOperation() {
-        val asciiValue = x.read()[0].toInt()
+        val asciiValue = x.read()[0].toUByte().toInt()
 
         if (asciiValue > 0x7F) {
             throw IllegalArgumentException()

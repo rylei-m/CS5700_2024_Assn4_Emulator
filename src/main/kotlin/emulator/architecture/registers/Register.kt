@@ -2,6 +2,7 @@ package emulator.architecture.registers
 
 import emulator.architecture.memory.Memory
 
+@OptIn(ExperimentalUnsignedTypes::class)
 abstract class Register(
     bytes: UByteArray
 ): Memory(bytes) {

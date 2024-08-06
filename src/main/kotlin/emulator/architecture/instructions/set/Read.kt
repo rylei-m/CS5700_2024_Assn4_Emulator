@@ -1,16 +1,17 @@
 package emulator.architecture.instructions.set
 
+import emulator.Facade.ManageA.a
+import emulator.Facade.ManageM.m
+import emulator.Facade.RXManager.r
 import emulator.architecture.Utili
 import emulator.architecture.instructions.Instruction
 import emulator.architecture.memory.base.types.ManageRam.ram
 import emulator.architecture.memory.base.types.ManageRom
-import emulator.architecture.registers.ManageA.a
-import emulator.architecture.registers.ManageM.m
 import emulator.architecture.registers.RX
-import emulator.architecture.registers.RXManager.r
 
+@OptIn(ExperimentalUnsignedTypes::class)
 class Read(
-    nibbles: ByteArray
+    nibbles: UByteArray
 ) : Instruction(nibbles) {
     lateinit var x: RX
 
@@ -31,5 +32,5 @@ class Read(
             ram.read(address)
         }
 
-        x.write(byteArrayOf(value))    }
+        x.write(ubyteArrayOf(value))    }
 }

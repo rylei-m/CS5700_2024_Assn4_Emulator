@@ -6,6 +6,7 @@ object ManageRam {
     val ram = Ram()
 }
 
+@OptIn(ExperimentalUnsignedTypes::class)
 class Ram: BasicMemory(
     UByteArray(4096)
 ) {

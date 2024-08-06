@@ -1,11 +1,12 @@
 package emulator.architecture.instructions.set
 
+import emulator.Facade.ManageT.t
+import emulator.Facade.RXManager.r
 import emulator.architecture.fundamentals.PauseTimer
 import emulator.architecture.instructions.Instruction
-import emulator.architecture.registers.ManageT.t
 import emulator.architecture.registers.RX
-import emulator.architecture.registers.RXManager.r
 
+@OptIn(ExperimentalUnsignedTypes::class)
 class ReadT(
     nibbles: UByteArray
 ) : Instruction(nibbles) {
@@ -21,7 +22,7 @@ class ReadT(
 
         val tValue = t.read()[0]
 
-        x.write(byteArrayOf(tValue))
+        x.write(ubyteArrayOf(tValue))
 
         PauseTimer.pauseTimer.set(false)
     }

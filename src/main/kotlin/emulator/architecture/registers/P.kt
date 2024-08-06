@@ -2,10 +2,7 @@ package emulator.architecture.registers
 
 import emulator.architecture.Utili
 
-object ManageP {
-    val p = P()
-}
-
+@OptIn(ExperimentalUnsignedTypes::class)
 class P : Register(
     UByteArray(2)
 ) {

@@ -1,9 +1,6 @@
 package emulator.architecture.registers
 
-object RXManager {
-    val r = arrayOf(RX(),RX(),RX(),RX(),RX(),RX(),RX(),RX())
-}
-
+@OptIn(ExperimentalUnsignedTypes::class)
 class RX : Register(
     UByteArray(1)
 ){

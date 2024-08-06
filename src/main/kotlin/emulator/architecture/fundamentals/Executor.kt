@@ -13,8 +13,10 @@ class Executor {
 
     fun executeProgram(rom: Rom) {
         this.rom = rom
+        val cpu = CPU()
+
         val cpuFuture = executor.scheduleAtFixedRate(
-            CPU().cpuRunnable,
+            cpu.cpuRunnable,
             0,
             instructionSpeed,
             TimeUnit.MILLISECONDS
@@ -36,6 +38,9 @@ class Executor {
             executor.shutdown()
         }
 
+    }
+    fun shutdown() {
+        executor.shutdown()
     }
 
 }

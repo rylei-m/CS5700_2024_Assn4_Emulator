@@ -1,9 +1,10 @@
 package emulator.architecture.instructions.set
 
+import emulator.Facade.RXManager.r
 import emulator.architecture.instructions.Instruction
 import emulator.architecture.registers.RX
-import emulator.architecture.registers.RXManager.r
 
+@OptIn(ExperimentalUnsignedTypes::class)
 class Sub(
     nibbles: UByteArray
 ) : Instruction(nibbles) {
@@ -20,10 +21,10 @@ class Sub(
         z = r[zValue]    }
 
     override fun performOperation() {
-        val xValue = x.read()[0].toInt()
-        val yValue = y.read()[0].toInt()
+        val xValue = x.read()[0].toUByte().toInt()
+        val yValue = y.read()[0].toUByte().toInt()
 
         val result = (xValue - yValue).toByte()
 
-        z.write(byteArrayOf(result))    }
+        z.write(ubyteArrayOf(result.toUByte()))    }
 }

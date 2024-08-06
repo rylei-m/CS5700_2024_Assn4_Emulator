@@ -1,11 +1,11 @@
 package emulator.architecture.instructions.set
 
+import emulator.Facade.RXManager.r
 import emulator.architecture.instructions.Instruction
 import emulator.architecture.registers.RX
-import emulator.architecture.registers.RXManager.r
 
 class ConvertByteToAscii(
-    nibbles: ByteArray
+    nibbles: UByteArray
 ) : Instruction(nibbles) {
 
     lateinit var x: RX
@@ -23,10 +23,10 @@ class ConvertByteToAscii(
         require(value <= 0xF) {}
 
         val asciiValue = if (value < 10) {
-            (value + '0'.code).toByte()
+            (value + '0'.code).toUByte()
         } else {
-            (value - 10 + 'A'.code).toByte()
+            (value - 10 + 'A'.code).toUByte()
         }
 
-        y.write(byteArrayOf(asciiValue))    }
+        y.write(ubyteArrayOf(asciiValue.toUByte()))    }
 }

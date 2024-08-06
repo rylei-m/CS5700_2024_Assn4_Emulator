@@ -1,16 +1,17 @@
 package emulator.architecture.instructions.set
 
+import emulator.Facade.RXManager.r
 import emulator.architecture.Utili
 import emulator.architecture.instructions.Instruction
 import emulator.architecture.registers.RX
-import emulator.architecture.registers.RXManager.r
 
+@OptIn(ExperimentalUnsignedTypes::class)
 class Store(
     nibbles: UByteArray
 ) : Instruction(nibbles) {
 
     lateinit var x: RX
-    var byte: UByte = 0u
+    private var byte: UByte = 0u
 
     override fun processNibbles() {
         val xValue = nibbles[0].toUByte().toInt()

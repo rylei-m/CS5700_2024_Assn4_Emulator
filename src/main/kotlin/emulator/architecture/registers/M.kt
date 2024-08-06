@@ -1,9 +1,6 @@
 package emulator.architecture.registers
 
-object ManageM {
-    val m = M()
-}
-
+@OptIn(ExperimentalUnsignedTypes::class)
 class M : Register(
     UByteArray(1)
 ) {

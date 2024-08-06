@@ -1,9 +1,6 @@
 package emulator.architecture.fundamentals
 
-object ManageScreen {
-    val screen = Screen()
-}
-
+@OptIn(ExperimentalUnsignedTypes::class)
 class Screen {
 companion object {
     const val BUFFER_HEIGHT = 8
@@ -23,7 +20,7 @@ companion object {
         println("=".repeat(BUFFER_WIDTH))
     }
 
-    fun draw(byte: UByte, row: Byte, col: Byte) {
+    fun draw(byte: UByte, row: UByte, col: UByte) {
         val rowIndex = row.toInt()
         val colIndex = col.toInt()
         if (rowIndex in 0 until BUFFER_HEIGHT && colIndex in 0 until BUFFER_WIDTH) {

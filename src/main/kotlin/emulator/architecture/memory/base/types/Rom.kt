@@ -2,6 +2,7 @@ package emulator.architecture.memory.base.types
 
 import emulator.architecture.memory.base.BasicMemory
 
+@OptIn(ExperimentalUnsignedTypes::class)
 object ManageRom {
     var rom: Rom? = null
 
@@ -15,6 +16,7 @@ object ManageRom {
 }
 
 
+@OptIn(ExperimentalUnsignedTypes::class)
 class Rom(
     bytes: UByteArray
 ): BasicMemory(bytes) {
