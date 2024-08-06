@@ -6,12 +6,15 @@ import emulator.architecture.memory.base.types.Rom
 import emulator.architecture.registers.ManageT.t
 import emulator.architecture.instructions.InstructionFactory
 import emulator.help.Helper
+import java.util.concurrent.Executors
 
 class CPU(
-    val timerSpeed: Long = 200L,     //500 times p/sec
-    val executeInstructions: Long = 500L
+    val timerSpeed: Long = 2L,     //500 times p/sec
+    val executeInstructions: Long = 5L
 ) {
-    var rom: Rom? = null
+    private val executor = Executors.newSingleThreadScheduledExecutor()
+    private val instructionFactory = InstructionFactory()
+    private var rom: Rom? = null
 
     val cpuRunnable = Runnable {
         try {

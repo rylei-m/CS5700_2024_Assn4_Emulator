@@ -10,6 +10,7 @@ class Emulator {
 
     fun run(programPath: String? = null) {
         var pathToBinary = programPath
+        val programPath = "C:/Users/rymin/summer24/5700Assn4/CS5700_2024_Assn4_Emulator/$pathToBinary"
 
         try {
             if (pathToBinary == null) {

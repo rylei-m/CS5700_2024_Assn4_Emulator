@@ -1,5 +1,9 @@
 package emulator.architecture.fundamentals
 
+object ManageScreen {
+    val screen = Screen()
+}
+
 class Screen {
 companion object {
     const val BUFFER_HEIGHT = 8
@@ -14,6 +18,7 @@ companion object {
                 val char = buffer[index].toInt().toChar()
                 print(char)
             }
+            println()
         }
         println("=".repeat(BUFFER_WIDTH))
     }

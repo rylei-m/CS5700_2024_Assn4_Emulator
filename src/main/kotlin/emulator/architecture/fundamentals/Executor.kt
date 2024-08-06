@@ -6,12 +6,13 @@ import java.util.concurrent.Executors
 import java.util.concurrent.TimeUnit
 
 class Executor {
-    private val rom: Rom? = null
+    private var rom: Rom? = null
     val executor = Executors.newSingleThreadScheduledExecutor()
     private val instructionSpeed: Long = 2L
     val timerSpeed: Long = 16L
 
     fun executeProgram(rom: Rom) {
+        this.rom = rom
         val cpuFuture = executor.scheduleAtFixedRate(
             CPU().cpuRunnable,
             0,
@@ -27,8 +28,8 @@ class Executor {
         )
 
         try {
-            timerFuture.get()
             cpuFuture.get()
+            timerFuture.get()
         } catch (e: Exception) {
             print("error")
         } finally {
