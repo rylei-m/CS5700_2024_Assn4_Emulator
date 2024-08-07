@@ -5,6 +5,7 @@ import emulator.architecture.CPU
 import emulator.help.Helper
 import java.io.IOException
 
+@OptIn(ExperimentalUnsignedTypes::class)
 class Emulator {
     //private val cpu = CPU() // for executing prog
     private val facade = Facade()

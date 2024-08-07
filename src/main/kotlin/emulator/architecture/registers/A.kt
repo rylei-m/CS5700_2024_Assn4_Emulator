@@ -8,5 +8,6 @@ class A : Register(
     override fun write(bytes: UByteArray) {
         require(bytes.size == 2)
         bytes.copyInto(destination = this.bytes, startIndex = 0, endIndex = 2)
+        println(bytes + "from A")
     }
 }

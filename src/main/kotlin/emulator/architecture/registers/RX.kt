@@ -7,5 +7,6 @@ class RX : Register(
     override fun write(bytes: UByteArray) {
         require(bytes.size == 1)
         bytes.copyInto(destination = this.bytes, startIndex = 0, endIndex = 1)
+        println(bytes + "from RX")
     }
 }

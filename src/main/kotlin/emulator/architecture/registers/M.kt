@@ -9,5 +9,7 @@ class M : Register(
         val flag = bytes[0].toInt() and 0xFF
         require(flag == 0 || flag == 1)
         bytes.copyInto(destination = this.bytes, startIndex = 0, endIndex = 1)
+        println(bytes + "from M")
+
     }
 }

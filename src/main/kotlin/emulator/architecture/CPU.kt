@@ -5,7 +5,6 @@ import emulator.Facade
 import emulator.architecture.fundamentals.timerRunnable
 import emulator.architecture.memory.base.types.Rom
 import emulator.architecture.instructions.InstructionFactory
-import emulator.help.Helper
 import java.util.concurrent.Executors
 import java.util.concurrent.TimeUnit
 
@@ -72,7 +71,7 @@ class CPU(
 
     val cpuRunnable = Runnable {
         try {
-            val bytes = Helper().readNextInstructionBytes()
+            val bytes = Facade().readNextInstruction()
             println(bytes)
             require(bytes.size == 2)
             if (bytes[0].toInt() == 0 && bytes[1].toInt() == 0) {
@@ -94,6 +93,7 @@ class CPU(
             val nibble3 = nibbles23.second
 
             val instruction = InstructionFactory().createInstruction(nibble0, nibble1, nibble2, nibble3)
+            println(instruction)
             println("go to facade")
             instruction.execute(Facade())
             println("out of Facade")
