@@ -1,8 +1,8 @@
 package emulator.architecture.instructions.set
 
-import emulator.Facade.ManageA.a
-import emulator.Facade.ManageM.m
-import emulator.Facade.RXManager.r
+import emulator.Computer.ManageA.a
+import emulator.Computer.ManageM.m
+import emulator.Computer.RXManager.r
 import emulator.architecture.Utili
 import emulator.architecture.instructions.Instruction
 import emulator.architecture.memory.base.types.ManageRam.ram

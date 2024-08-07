@@ -1,6 +1,6 @@
 package emulator.architecture.instructions.set
 
-import emulator.Facade.ManageM.m
+import emulator.Computer.ManageM.m
 import emulator.architecture.instructions.Instruction
 
 @OptIn(ExperimentalUnsignedTypes::class)

@@ -1,11 +1,11 @@
 package emulator.architecture.instructions.set
 
-import emulator.Facade.RXManager.r
+import emulator.Computer.ManageScreen.screen
+import emulator.Computer.RXManager.r
 import emulator.architecture.fundamentals.Screen
 import emulator.architecture.instructions.Instruction
 import emulator.architecture.registers.RX
 
-@OptIn(ExperimentalUnsignedTypes::class)
 class Draw(
     nibbles: UByteArray
 ) : Instruction(nibbles) {
@@ -28,5 +28,5 @@ class Draw(
             throw IllegalArgumentException()
         }
 
-        Screen().draw(asciiValue.toUByte(), row, col)    }
+        screen.draw(asciiValue.toUByte(), row, col)    }
 }

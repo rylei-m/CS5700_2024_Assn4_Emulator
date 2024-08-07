@@ -5,26 +5,12 @@ import emulator.architecture.CPU
 import emulator.architecture.Utili
 //import emulator.architecture.fundamentals.Executor
 import emulator.architecture.fundamentals.Screen
-import emulator.architecture.memory.base.types.Rom
 import emulator.help.Helper
 
-@OptIn(ExperimentalUnsignedTypes::class)
-class Facade {
+class Computer {
 
-    fun startEmulator() {
-        val pathToBinary = helper.pathToBinary()
-        val binaryFile = helper.getBinary(pathToBinary)
-        val binaryProgram = helper.binaryProgramFromFile(binaryFile)
-        val rom = helper.romFromBinaryProgram(binaryProgram)
-        //val executor = Executor()
-        cpu.executeProgram(rom)
-    //val rom = Rom()
-        //val executor = Executor()
-        //executor.executeProgram(rom)
-    }
     val helper = Helper()
-    //private val executor = Executor()
-    private val cpu = CPU()
+    val cpu = CPU(this)
 
     object ManageA {
         val a = A()

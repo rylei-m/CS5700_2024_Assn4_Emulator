@@ -1,6 +1,6 @@
 package emulator.help
 
-import emulator.Facade.ManageP.p
+import emulator.Computer.ManageP.p
 import emulator.architecture.Utili
 import emulator.architecture.memory.base.types.ManageRom
 import emulator.architecture.memory.base.types.ManageRom.rom

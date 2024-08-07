@@ -1,8 +1,8 @@
 package emulator.architecture.instructions
 
-import emulator.Facade
+import emulator.Computer
 import emulator.architecture.Utili
-import emulator.Facade.ManageP.p
+import emulator.Computer.ManageP.p
 
 @OptIn(ExperimentalUnsignedTypes::class)
 abstract class Instruction(
@@ -12,7 +12,7 @@ abstract class Instruction(
         require(nibbles.size == 3) {}
     }
 
-    fun execute(facade: Facade) {
+    fun execute(computer: Computer) {
         processNibbles()
         performOperation()
         incrementProgramCounter()

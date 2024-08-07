@@ -1,6 +1,6 @@
 package emulator.architecture.fundamentals
 
-import emulator.Facade.ManageT.t
+import emulator.Computer.ManageT.t
 import java.util.concurrent.atomic.AtomicBoolean
 
 class Timer {

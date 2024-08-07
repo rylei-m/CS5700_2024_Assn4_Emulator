@@ -1,6 +1,6 @@
 package emulator.architecture.instructions.set
 
-import emulator.Facade.ManageT.t
+import emulator.Computer.ManageT.t
 import emulator.architecture.Utili
 import emulator.architecture.fundamentals.PauseTimer
 import emulator.architecture.instructions.Instruction

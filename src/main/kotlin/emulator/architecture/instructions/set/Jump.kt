@@ -1,6 +1,6 @@
 package emulator.architecture.instructions.set
 
-import emulator.Facade.ManageP.p
+import emulator.Computer.ManageP.p
 import emulator.architecture.Utili
 import emulator.architecture.instructions.Instruction
 

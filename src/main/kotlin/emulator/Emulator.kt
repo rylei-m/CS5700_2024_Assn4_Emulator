@@ -1,24 +1,19 @@
 package emulator
 
-import emulator.architecture.CPU
-//import emulator.architecture.fundamentals.Executor
-import emulator.help.Helper
 import java.io.IOException
 
-@OptIn(ExperimentalUnsignedTypes::class)
 class Emulator {
-    //private val cpu = CPU() // for executing prog
-    private val facade = Facade()
+    private val computer = Computer()
 
     fun run() {
         try {
-            val pathToBinary = facade.helper.pathToBinary()
-            facade.loadAndRunProgram(pathToBinary)
-            val binaryFile = Helper().getBinary(pathToBinary)
-            val binaryProgram = Helper().binaryProgramFromFile(Helper().getBinary(binaryFile.toString()))
-            val rom = Helper().romFromBinaryProgram(binaryProgram)
+            val pathToBinary = computer.helper.pathToBinary()
+            computer.loadAndRunProgram(pathToBinary)
+            val binaryFile = computer.helper.getBinary(pathToBinary)
+            val binaryProgram = computer.helper.binaryProgramFromFile(computer.helper.getBinary(binaryFile.toString()))
+            val rom = computer.helper.romFromBinaryProgram(binaryProgram)
             println(binaryFile)
-            CPU().executeProgram(rom)
+            computer.cpu.executeProgram(rom)
         } catch (e: IOException) {
             println("error IOException")
         } catch (e: IllegalArgumentException) {

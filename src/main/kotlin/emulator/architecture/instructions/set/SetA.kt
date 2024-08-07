@@ -1,6 +1,6 @@
 package emulator.architecture.instructions.set
 
-import emulator.Facade.ManageA.a
+import emulator.Computer.ManageA.a
 import emulator.architecture.Utili
 import emulator.architecture.instructions.Instruction
 

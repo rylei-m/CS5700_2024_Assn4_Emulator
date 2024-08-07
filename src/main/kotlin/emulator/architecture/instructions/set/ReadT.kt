@@ -1,7 +1,7 @@
 package emulator.architecture.instructions.set
 
-import emulator.Facade.ManageT.t
-import emulator.Facade.RXManager.r
+import emulator.Computer.ManageT.t
+import emulator.Computer.RXManager.r
 import emulator.architecture.fundamentals.PauseTimer
 import emulator.architecture.instructions.Instruction
 import emulator.architecture.registers.RX

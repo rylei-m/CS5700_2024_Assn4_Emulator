@@ -1,6 +1,6 @@
 package emulator.architecture
 
-import emulator.Facade
+import emulator.Computer
 //import emulator.architecture.fundamentals.Executor
 import emulator.architecture.fundamentals.timerRunnable
 import emulator.architecture.memory.base.types.Rom
@@ -10,6 +10,7 @@ import java.util.concurrent.TimeUnit
 
 @OptIn(ExperimentalUnsignedTypes::class)
 class CPU(
+    private val computer: Computer,
     val timerSpeed: Long = 2L,
     val executeInstructions: Long = 5L,
 ) {
@@ -18,18 +19,15 @@ class CPU(
     private var rom: Rom? = null
     private val instructionSpeed: Long = 2L
 
-
     fun executeProgram(rom: Rom) {
         this.rom = rom
-        val cpu = CPU()
 
         val cpuFuture = executor.scheduleAtFixedRate(
-            cpu.cpuRunnable,
+            cpuRunnable,
             0,
             instructionSpeed,
             TimeUnit.MILLISECONDS
         )
-        println(cpu)
 
         val timerFuture = executor.scheduleAtFixedRate(
             timerRunnable,
@@ -37,52 +35,24 @@ class CPU(
             timerSpeed,
             TimeUnit.MILLISECONDS
         )
-        println(timerFuture)
 
         try {
-            println("trying cpuFuture")
             cpuFuture.get()
-            println("trying timerFuture")
             timerFuture.get()
         } catch (e: Exception) {
-            println("error did not work")
-            cpuFuture.get()
-            timerFuture.get()
+            println(e.message)
         } finally {
             executor.shutdown()
         }
 
     }
 
-    fun shutdown() {
-        try {
-            shutdown()
-            if (!executor.awaitTermination(5, TimeUnit.SECONDS)) {
-                executor.shutdownNow()
-                if (!executor.awaitTermination(5, TimeUnit.SECONDS)) {
-                    println("Executor did not terminate")
-                }
-            }
-        } catch (e: InterruptedException) {
-            executor.shutdownNow()
-            Thread.currentThread().interrupt()
-        }
-    }
-
     val cpuRunnable = Runnable {
         try {
-            val bytes = Facade().readNextInstruction()
-            println(bytes)
+            val bytes = computer.readNextInstruction()
             require(bytes.size == 2)
             if (bytes[0].toInt() == 0 && bytes[1].toInt() == 0) {
-                println("CPU running on $instructionSpeed")
-                try {
-                    shutdown()
-                    println("shutting down")
-                } catch (e: Exception) {
-                    println("shutdown failed")
-                    e.printStackTrace()
-                }
+                executor.shutdown()
                 return@Runnable
             }
             val nibbles01 = Utili().breakByteIntoNibbles(bytes[0])
@@ -92,11 +62,8 @@ class CPU(
             val nibble2 = nibbles23.first
             val nibble3 = nibbles23.second
 
-            val instruction = InstructionFactory().createInstruction(nibble0, nibble1, nibble2, nibble3)
-            println(instruction)
-            println("go to facade")
-            instruction.execute(Facade())
-            println("out of Facade")
+            val instruction = instructionFactory.createInstruction(nibble0, nibble1, nibble2, nibble3)
+            instruction.execute(computer)
         } catch (e: Exception) {
             e.printStackTrace()
             executor.shutdown()

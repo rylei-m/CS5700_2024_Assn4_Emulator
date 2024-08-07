@@ -1,10 +1,9 @@
 package emulator.architecture.instructions.set
 
-import emulator.Facade.RXManager.r
+import emulator.Computer.RXManager.r
 import emulator.architecture.instructions.Instruction
 import emulator.architecture.registers.RX
 
-@OptIn(ExperimentalUnsignedTypes::class)
 class ConvertByteToAscii(
     nibbles: UByteArray
 ) : Instruction(nibbles) {
