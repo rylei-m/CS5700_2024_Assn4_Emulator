@@ -1,11 +1,5 @@
 package emulator.architecture
 
-import emulator.architecture.memory.base.types.ManageRom
-import emulator.architecture.memory.base.types.ManageRom.rom
-import emulator.architecture.memory.base.types.Rom
-import java.io.File
-import java.io.IOException
-
 @OptIn(ExperimentalUnsignedTypes::class)
 class Utili {
 

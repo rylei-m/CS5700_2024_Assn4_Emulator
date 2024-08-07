@@ -30,9 +30,7 @@ class Write(
         val value = x.read()[0].toUByte()
 
         if (isUsingROM) {
-            ManageRom.fetchRom()?.let {
-                it.write(address, value)
-            }
+            ManageRom.fetchRom()?.write(address, value)
         } else {
             ram.write(address, value)
         }

@@ -3,7 +3,7 @@ package emulator
 import emulator.architecture.registers.*
 import emulator.architecture.CPU
 import emulator.architecture.Utili
-import emulator.architecture.fundamentals.Executor
+//import emulator.architecture.fundamentals.Executor
 import emulator.architecture.fundamentals.Screen
 import emulator.architecture.memory.base.types.Rom
 import emulator.help.Helper
@@ -16,14 +16,14 @@ class Facade {
         val binaryFile = helper.getBinary(pathToBinary)
         val binaryProgram = helper.binaryProgramFromFile(binaryFile)
         val rom = helper.romFromBinaryProgram(binaryProgram)
-        val executor = Executor()
-        executor.executeProgram(rom)
+        //val executor = Executor()
+        cpu.executeProgram(rom)
     //val rom = Rom()
         //val executor = Executor()
         //executor.executeProgram(rom)
     }
     val helper = Helper()
-    private val executor = Executor()
+    //private val executor = Executor()
     private val cpu = CPU()
 
     object ManageA {
@@ -46,12 +46,16 @@ class Facade {
         val t = T()
     }
 
+    object ManageScreen {
+        val screen = Screen()
+    }
+
     fun loadAndRunProgram(pathToBinary: String) {
         try {
             val binaryFile = helper.getBinary(pathToBinary)
             val binaryProgram = helper.binaryProgramFromFile(binaryFile)
             val rom = helper.romFromBinaryProgram(binaryProgram)
-            executor.executeProgram(rom)
+            cpu.executeProgram(rom)
         } catch (e: Exception) {
             println("Error: ${e.message}")
         }
@@ -67,7 +71,5 @@ class Facade {
         ManageP.p.write(Utili().intToByteArray(newBI))
     }
 
-    object ManageScreen {
-        val screen = Screen()
-    }
+
 }

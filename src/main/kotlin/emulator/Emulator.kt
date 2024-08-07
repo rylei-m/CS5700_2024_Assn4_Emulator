@@ -1,7 +1,7 @@
 package emulator
 
 import emulator.architecture.CPU
-import emulator.architecture.fundamentals.Executor
+//import emulator.architecture.fundamentals.Executor
 import emulator.help.Helper
 import java.io.IOException
 
@@ -16,7 +16,8 @@ class Emulator {
             val binaryFile = Helper().getBinary(pathToBinary)
             val binaryProgram = Helper().binaryProgramFromFile(Helper().getBinary(binaryFile.toString()))
             val rom = Helper().romFromBinaryProgram(binaryProgram)
-            Executor().executeProgram(rom)
+            println(binaryFile)
+            CPU().executeProgram(rom)
         } catch (e: IOException) {
             println("error IOException")
         } catch (e: IllegalArgumentException) {

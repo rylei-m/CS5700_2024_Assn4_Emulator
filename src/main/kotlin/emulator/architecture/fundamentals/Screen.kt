@@ -12,7 +12,7 @@ companion object {
         for (row in 0 until  BUFFER_HEIGHT) {
             for (col in 0 until BUFFER_WIDTH) {
                 val index = row * BUFFER_WIDTH + col
-                val char = buffer[index].toInt().toChar()
+                val char = buffer[index].toUByte().toInt().toChar()
                 print(char)
             }
             println()

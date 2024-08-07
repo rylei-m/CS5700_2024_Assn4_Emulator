@@ -16,15 +16,18 @@ object PauseTimer {
 val timerRunnable = Runnable {
     try {
         if (PauseTimer.pauseTimer.get()) {
+            println("Paused timer")
             return@Runnable
         }
 
         val currentTime = t.read()[0].toUByte().toInt()
         if (currentTime > 0) {
+            println("Time is $currentTime")
             t.write(ubyteArrayOf((currentTime -1).toUByte()))
         }
         
     } catch (e: Exception) {
+        e.printStackTrace()
         print("error")
     }
 }

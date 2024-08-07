@@ -23,6 +23,7 @@ class InstructionFactory {
         ::Draw
 
     )
+    @OptIn(ExperimentalUnsignedTypes::class)
     fun createInstruction(nibble0: UByte, nibble1: UByte, nibble2: UByte, nibble3: UByte): Instruction {
         val instructionConstructor = instructions[nibble0.toInt()]
 

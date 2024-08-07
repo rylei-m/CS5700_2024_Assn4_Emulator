@@ -8,7 +8,6 @@ import emulator.architecture.instructions.Instruction
 class SetA(
     nibbles: UByteArray
 ) : Instruction(nibbles) {
-    //lateinit var addressBytes: UByteArray
     private var addressBytes: UByteArray = UByteArray(0)
     override fun processNibbles() {
         val highNibble = nibbles[0].toUByte().toInt()
